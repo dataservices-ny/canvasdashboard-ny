@@ -20,3 +20,4 @@ dev/host.cert
 dev/host.key
 status/*
 templates/*
+.github/copilot-instructions.md
