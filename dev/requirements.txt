@@ -10,3 +10,4 @@ requests==2.22.0
 google-auth
 google-cloud-secret-manager==0.1.1
 google-cloud-logging==1.15.0
+Werkzeug==2.2.2
