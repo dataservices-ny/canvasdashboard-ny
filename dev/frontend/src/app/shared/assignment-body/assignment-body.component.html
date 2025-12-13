@@ -1,0 +1,60 @@
+<div class="list-group-item px-0">
+    <div class="d-flex d-inline-flex">
+        <div>
+            <a href="{{canvas_url}}/courses/{{course_id}}/assignments/{{assignment._id}}" target="_blank">View assignment page</a>
+        </div>
+        <!-- <div *ngIf="speedgrader" class="ml-2">
+            <a href="{{canvas_url}}/courses/{{course_id}}/gradebook/speed_grader?assignment_id={{assignment._id}}#%7B%22student_id%22%3A%22{{submission.student_id}}%22%7D" target="_blank">Open in Speedgrader</a>
+            <a href="{{canvas_url}}/courses/{{course_id}}/gradebook/speed_grader?assignment_id={{assignment._id}}#{'student_id':'{{submission.student_id}}'}" target="_blank">Open in Speedgrader 2</a>
+            <a href="{{ canvas_url + '/courses/' + course_id + '/gradebook/speed_grader?assignment_id=' + assignment._id + '#%7B%22student_id%22%3A%22' + submission.student_id + '%22%7D' }}" target="_blank">Open in Speedgrader 2</a>
+        </div> -->
+    </div>
+</div>
+
+<div *ngIf="assignment.description && assignment.description.length > 0" class="list-group-item px-0">
+    <div role="button" class="font-weight-bold"
+            (click)="assignment.descriptionIsCollapsed = !assignment.descriptionIsCollapsed"
+            [attr.aria-expanded]="!assignment.descriptionIsCollapsed" attr.aria-controls="a-description-{{assignment._id}}">
+        Assignment Description 
+        <icon-carat-down-fill *ngIf="assignment.descriptionIsCollapsed"></icon-carat-down-fill>
+        <icon-carat-up-fill *ngIf="!assignment.descriptionIsCollapsed"></icon-carat-up-fill>
+    </div>
+    <div id="a-description-{{assignment._id}}" class="assignment-description py-2"
+         [ngbCollapse]="assignment.descriptionIsCollapsed" [innerHTML]="assignment.description"></div>
+</div>
+
+<div *ngIf="!assignmentsService.complete_incomplete(submission)" class="list-group-item px-0 font-weight-bold d-inline-flex align-items-center">
+    Grade: 
+    <div *ngIf="assignmentsService.letter_number(assignment, submission) as grade" class="badge badge-secondary px-1 py-1 ml-1" style="font-size: 0.85rem">{{ grade }}</div>
+    <div *ngIf="assignmentsService.no_grade(submission)"> No grade available</div>
+</div>
+
+<div *ngIf="assignment.rubric" class="list-group-item px-0 pb-0">
+    <div class="font-weight-bold">Rubric</div>
+    <div *ngIf="assignment.rubric" class="pt-2"><app-rubric [assignment]="assignment" [submission_rubric]="submission.rubric"></app-rubric></div>
+</div>
+
+<div *ngIf="assignmentsService.comments_exist(submission)" class="list-group-item px-0">
+    <div class="list-group list-group-flush">
+        <div class="font-weight-bold">Comments</div>
+        <div *ngFor="let comment of submission.comments" class="list-group-item pt-1 pb-1">
+            
+            <p class="my-0">from {{ comment.author_name }} on {{comment.updatedAt | date:'M/d' }}</p>
+            
+            <div *ngIf="comment.comment">{{ comment.comment }}</div>
+
+            <div *ngIf="comment.attachments">
+                <div *ngFor="let attachment of comment.attachments">
+                    <a role="button" class="btn btn-sm btn-light" href="{{attachment.url}}">{{ attachment.display_name }}</a>
+                </div>
+            </div>
+
+            <div *ngIf="comment.video_url">
+                <video width="320" controls>
+                    <source src="{{comment.video_url}}" type="video/mp4">
+                </video>
+            </div>
+
+        </div>
+    </div>
+</div>

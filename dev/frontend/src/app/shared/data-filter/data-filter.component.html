@@ -1,0 +1,25 @@
+<div *ngIf="assignments_groups != null && periods != null" class="filter d-flex flex-row border-bottom border-dark mb-4 pb-0">
+    <div *ngIf="assignments_groups.length > 1 || periods.length > 1" class="d-flex justify-content-center flex-column mb-3 mr-4">
+        <span class="h5 mb-1"><i class="bi bi-filter"></i> Filters</span>
+    </div>
+    <div *ngIf="assignments_groups != null">
+        <div *ngIf="assignments_groups.length > 1" ngbDropdown class="d-inline-block mb-3 mr-4 pl-0">
+            <span class="mr-2">Group</span>
+            <button class="btn btn-outline-dark" id="groupFilterDropdown" ngbDropdownToggle>{{ selected_group ? selected_group : 'All' }}</button>
+            <div ngbDropdownMenu aria-labelledby="groupFilterDropdown">
+                <button (click)="setGroup($event.target.innerText)" ngbDropdownItem>All</button>
+                <button *ngFor="let group of assignments_groups" (click)="setGroup(group)" ngbDropdownItem>{{ group }}</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="periods != null">
+        <div *ngIf="periods.length > 1" ngbDropdown class="d-inline-block mb-3 pl-0 pr-4">
+            <span class="mr-2">Period</span>
+            <button class="btn btn-outline-dark" id="periodFilterDropdown" ngbDropdownToggle>{{ selected_period ? selected_period.name : 'All' }}</button>
+            <div ngbDropdownMenu aria-labelledby="periodFilterDropdown">
+                <button (click)="setPeriod({'id': null,'name': 'All','start_at': null,'end_at': null})" ngbDropdownItem>All</button>
+                <button *ngFor="let period of periods" (click)="setPeriod(period)" ngbDropdownItem>{{ period.name }}</button>
+            </div>
+        </div>
+    </div>
+</div>

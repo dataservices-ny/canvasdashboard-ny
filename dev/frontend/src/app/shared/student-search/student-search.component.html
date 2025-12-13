@@ -1,0 +1,24 @@
+<input *ngIf="studentSearchService.students && studentSearchService.students_loaded; else spinner" class="student-search form-control {{size}}" type="text" 
+    placeholder="Find a student..."       
+    [(ngModel)]="student" 
+    [ngbTypeahead]="search" 
+    [inputFormatter]="formatter" 
+    [resultTemplate]="rt"
+    [editable]="false"
+    [showHint]="false"
+    #input
+    (selectItem)="student_selected($event, input)"/>
+
+<ng-template #rt let-r="result" let-t="term">
+    <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+</ng-template>
+
+<ng-template #spinner>
+    <div class="student-search form-control d-flex {{size}}">
+        <span class="text-muted">Find a student...</span>
+        <div class="d-flex align-items-center">
+            <div class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></div>
+        </div>
+    </div>
+    
+</ng-template>

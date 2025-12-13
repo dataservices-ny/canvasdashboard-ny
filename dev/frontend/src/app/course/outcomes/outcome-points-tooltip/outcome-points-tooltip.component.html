@@ -1,0 +1,16 @@
+<div class="container points-tooltip">
+    <div class="row align-items-center">
+         <div class="col-auto pl-0 pr-2">
+              <app-rubric-badge [points]="assessment.points"></app-rubric-badge>
+         </div>
+         <div class="col px-0">
+              <div class="small text-left">{{ assessment.dueAt | date: 'M/d' }}</div>
+              <div class="text-left text-truncate">{{ assessment.name }}</div>
+         </div>
+    </div>
+    <div class="row">
+        <div class="ml-auto text-muted small">
+            click for more detail
+        </div>
+    </div>
+</div>

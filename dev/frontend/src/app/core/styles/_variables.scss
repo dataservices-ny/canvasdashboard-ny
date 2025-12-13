@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "sass:color";
+
+// // Bootstrap Variables
+
+// // Typography
+// //
+// // Font, line-height, and color for body text, headings, and more.
+
+// @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+// $font-family-sans-serif:      'Libre Franklin', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+// $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+// $font-family-base:            $font-family-sans-serif !default;
+
+
+// Custom Variables
+
+$aves-font-family: "proxima-nova", sans-serif;
+$aves-dark-blue: #002a58;
+$aves-dark-gray: #686663;
+$aves-light-gray: #c4c1ba;
+$aves-very-light-gray: #E7E8EC;
+$sidebar-width: 250px;
+$aves-light-gray-button-text: #525256;
+$aves-body-text: #656565;
+
+$body-color: $aves-body-text;
+$link-color: #007bff;
+$theme-colors: (
+  dark: $aves-dark-blue,
+  primary: $aves-very-light-gray,
+  info: $link-color,
+  link: $link-color,
+  late: #ffc107,
+  // RAG
+  rubric-advanced: #007bff,
+  rubric-proficient: #28a745,
+  rubric-developing: #ffc107,
+  rubric-not-yet: #dc3545,
+  rubric-na: #6c757d,
+  graph-advanced:  color.scale(#007bff, $lightness: 50%),
+  graph-proficient: color.scale(#28a745, $lightness: 50%),
+  graph-developing: color.scale(#ffc107, $lightness: 50%),
+  graph-not-yet: color.scale(#dc3545, $lightness: 50%),
+  // TEST
+  // rubric-advanced: #CA0020,
+  // rubric-proficient: #F4A582,
+  // rubric-developing: #92C5DE,
+  // rubric-not-yet: #0571B0,
+  // rubric-na: #6c757d,
+  // graph-advanced:  color.scale(#CA0020, $lightness: 50%),
+  // graph-proficient: color.scale(#F4A582, $lightness: 50%),
+  // graph-developing: color.scale(#92C5DE, $lightness: 50%),
+  // graph-not-yet: color.scale(#0571B0, $lightness: 50%),
+  //LEOS
+  // rubric-advanced: #0092B9,
+  // rubric-proficient: #00BFCD,
+  // rubric-developing: #B4D700,
+  // rubric-not-yet: #F1C900,
+  // rubric-na: #6c757d,
+  // graph-advanced:  color.scale(#0092B9, $lightness: 50%),
+  // graph-proficient: color.scale(#00BFCD, $lightness: 50%),
+  // graph-developing: color.scale(#B4D700, $lightness: 50%),
+  // graph-not-yet: color.scale(#F1C900, $lightness: 50%),
+
+);
+
+$enable-rounded: true;
+
+

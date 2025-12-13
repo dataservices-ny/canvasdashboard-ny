@@ -1,0 +1,17 @@
+<div *ngFor="let dot of dots" class="dot" 
+     role="button"
+     (click)="assignmentModalService.openAssignment(student_id, course_id, dot.assessment.assignment_id)"
+     [ngbTooltip]="tooltip"
+     container="'body'"
+     tooltipClass="points-tooltip"
+     [style.width]="dot.size + 'px'" 
+     [style.height]="dot.size + 'px'"
+     [style.left]="dot.left + 'px'"
+     [style.top]="dot.top + 'px'"
+     [style.opacity]="dot.opacity">
+
+     <ng-template #tooltip>
+          <app-outcome-points-tooltip [assessment]="dot.assessment"></app-outcome-points-tooltip>
+     </ng-template>
+
+</div>

@@ -1,0 +1,84 @@
+<div *ngIf="user$ | async as user">
+    <div class="display nav-title mt-2 ">
+        <img src="/static/img/A_white.png" class="a-logo"/>Canvas Dashboard
+    </div>
+    
+    <div class="nav-heading d-flex d-inline-flex align-items-center w-100 mr-2">
+        <div class="text-truncate">{{ user.name }}</div>
+        <div class="ml-auto"><a href="/api/signout" class="badge badge-secondary">sign out</a></div>
+    </div>
+    
+    <!-- <div class="nav-heading">External Links</div> -->
+    <div class="list-group list-group-flush">
+        <div class="list-group-item d-flex d-inline-flex align-items-center">
+            <img src="/static/img/canvas.png" style="height: 1.2rem" class="mr-2"/><a href="{{canvas_url}}">Canvas</a>
+        </div>
+        <a href="https://open.avenues.org" class="list-group-item">Avenues Open</a>
+        <a href="{{veracross_url}}" class="list-group-item">Veracross Portal</a>
+    </div>
+
+    
+    <h5 class="w-100">
+        <a [routerLink]="['dashboard']" routerLinkActive="active-nav" class="nav-heading d-flex d-inline-flex align-items-center">
+            <icon-house class="mr-2"></icon-house>
+            Dashboard Home
+        </a>
+    </h5>
+
+    <h5 *ngIf="user.admin" class="w-100">
+        <a [routerLink]="['admin']" routerLinkActive="active-nav" class="nav-heading d-flex d-inline-flex align-items-center">
+            <icon-glasses class="mr-2"></icon-glasses>
+            Admin Dashboard
+        </a>
+    </h5>
+
+    <div *ngIf="user.student || user.teacher">
+        
+        <h5 class="nav-heading d-flex d-inline-flex align-items-center">
+            <icon-book class="mr-2"></icon-book>
+            Courses
+        </h5>
+
+        <div *ngIf="user.student" class="list-group list-group-flush">
+            <a *ngFor="let course of user.student"
+                [routerLink]="[ 'course', course.course_id, 'student', user.id ]"
+                routerLinkActive="active-nav"
+                class="list-group-item">
+            {{ course.course_name }}
+            </a>
+        </div>
+
+        <div *ngIf="user.teacher" class="list-group list-group-flush">
+            <a *ngFor="let course of user.teacher"
+                [routerLink]="[ '/', 'course', course.course_id ]"
+                routerLinkActive="active-nav"
+            class="list-group-item">
+            {{ course.course_name }}
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="user.student_list || user.admin">
+        <h5 class="nav-heading d-flex d-inline-flex align-items-center">
+            <icon-person class="mr-2"></icon-person>
+            Students
+        </h5>
+        
+        <div *ngIf="['admin', 'teacher'].includes((user$ | async).mode)" class="px-2 pb-2">
+            <app-student-search></app-student-search>
+        </div>
+    </div>
+
+
+    <div class="list-group list-group-flush">
+        <a *ngFor="let student of user.student_list | sortBy:'asc':'sortable_name'"
+            [routerLink]="['dashboard', 'student', student.id]"
+            routerLinkActive="active-nav"
+            class="list-group-item text-truncate">
+        {{ student.name }}
+        </a>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,67 @@
+<div *ngIf="outcomes; else spinner">
+    
+    <app-outcomes-graph-key></app-outcomes-graph-key>
+
+    <div *ngIf="assessments_loaded; else spinner">
+
+        <div *ngIf="(outcomes | json) == '{}'">
+            No outcome-based assessments found.
+        </div>
+
+        <div *ngFor="let outcome of outcomes | keyvalue">
+            
+            <div *ngIf="outcome.value.assessments.length > 0" class="card mb-3">
+                
+                <div class="card-header font-weight-bold d-flex align-items-center py-1"
+                    role="button" (click)="collapse(outcome.key)"
+                    [attr.aria-expanded]="!outcomes_collapsed[outcome.key]" attr.aria-controls="o-body-{{outcome.key}}">
+                
+                    <div class="text-truncate">{{outcome.value.title}}</div>
+                
+                    <div class="ml-auto">
+                        <div *ngIf="outcomes_collapsed[outcome.key]" class="d-inline-flex align-items-center">
+                            <div class="d-none d-sm-block small">show list</div>
+                            <icon-plus class="icon"></icon-plus>
+                        </div>
+                        <div *ngIf="!outcomes_collapsed[outcome.key]" class="d-inline-flex align-items-center">
+                            <div class="d-none d-sm-block small">hide list</div>
+                            <icon-dash class="icon"></icon-dash>
+                        </div>
+                    </div>
+                
+                </div>
+
+                <div class="card-body p-0 mx-3 my-2">
+                    <div class="progress">
+                        <div class="progress-bar bg-graph-not-yet" [style.width]="'16.66667%'"></div>
+                        <div class="progress-bar bg-graph-developing" [style.width]="'33.33333%'"></div>
+                        <div class="progress-bar bg-graph-proficient" [style.width]="'33.33333%'"></div>
+                        <div class="progress-bar bg-graph-advanced" [style.width]="'16.66667%'"></div>
+                    </div>
+                    <div *ngFor="let group of outcome.value.assessment_groups | keyvalue"  class="dot-group" [style.left]="group_position(group.key) + '%'">
+                        <div *ngIf="group.key != null">
+                            <app-graph-dot-group [assessments]="group.value" [student_id]="student_id" [course_id]="course_id"></app-graph-dot-group>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body" 
+                    id="o-body-{{outcome.key}}" [ngbCollapse]="outcomes_collapsed[outcome.key]">
+                    <div class="row d-flex d-inline-flex small" [innerHTML]="outcome.value.description"></div>
+                    <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments"></app-outcome-assignment-list>
+                </div>
+            
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

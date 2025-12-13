@@ -1,0 +1,76 @@
+<div *ngIf="course$ | async as course">
+    <div *ngIf="!loading; else spinner">
+        
+        
+        <div ngbDropdown class="d-inline-block mb-3 pl-3">
+            <span class="h6">Show most recent: </span>
+            <button class="btn btn-outline-dark" id="sectionDropdown" ngbDropdownToggle>{{ show_number }}</button>
+            <div ngbDropdownMenu aria-labelledby="sectionDropdown">
+                <button *ngFor="let num of show_number_dropdown_list" ngbDropdownItem (click)="setNumber(num)">{{ num }}</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-hover table-bordered table-fixed-header rotated-header">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <ng-template ngFor let-outcome [ngForOf]="outcomes | keyvalue | sortBy:'asc':'value.title'">
+                            <th *ngIf="outcome_max_numbers[outcome.key] > 0" [ngStyle]="column_widths[outcome.key]">
+                                <div class="rotated-header-container" [ngStyle]="column_widths[outcome.key]">
+                                    <div class="rotated-header-content small text-truncate">{{ outcome.value.title }}</div>
+                                </div>
+                            </th>
+                        </ng-template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of course.sections[(sectionService.current_section | async)].students">
+                    
+                        <td class="student-col text-truncate">
+                            <a routerLink="/course/{{course.course_id}}/student/{{student.id}}/outcomes-timeline" class="text-link">{{ student.name }}</a>
+                        </td>
+
+                        <ng-template ngFor let-outcome [ngForOf]="outcomes | keyvalue | sortBy:'asc':'value.title'">
+                            <ng-template [ngIf]="outcome_max_numbers[outcome.key] > 0">
+                                <ng-template [ngIf]="filtered_outcomes.hasOwnProperty(student.id)" [ngIfElse]="empty">
+                                    <td *ngIf="filtered_outcomes[student.id][outcome.key]; else empty" [ngStyle]="column_widths[outcome.key]">
+                                        <div *ngIf="filtered_outcomes[student.id][outcome.key].assessments as student_assessments; else empty">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <div *ngFor="let assessment of student_assessments | sortBy:'asc':'dueAt'; index as i; count as count;"
+                                                    role="button"
+                                                    (click)="assignmentModalService.openAssignment(student.id, course.course_id, assessment.assignment_id)"
+                                                    [ngbTooltip]="tooltip"
+                                                    container="body"
+                                                    tooltipClass="points-tooltip">
+
+                                                    <app-rubric-badge *ngIf="i + 1 > count - show_number && i < count - 1" [points]="assessment.points" [skinny]="true" [style.opacity]=".5"></app-rubric-badge>
+                                                    <app-rubric-badge *ngIf="i + 1 > count - show_number && i == count - 1" [points]="assessment.points"></app-rubric-badge>
+                                                    
+                                                    <ng-template #tooltip>
+                                                        <app-outcome-points-tooltip [assessment]="assessment"></app-outcome-points-tooltip>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-template>
+                            </ng-template>
+                            <ng-template #empty><td></td></ng-template>
+                        </ng-template>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

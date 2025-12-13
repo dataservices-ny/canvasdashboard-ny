@@ -1,0 +1,16 @@
+.card-body{
+    position: relative;
+}
+
+:host ::ng-deep .card-body div p:last-child {
+    margin-bottom: 0;
+}
+
+.progress {
+    height: 48px;
+}
+
+.dot-group {
+    position: absolute;
+    top: 24px;
+}

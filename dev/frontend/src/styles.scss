@@ -1,0 +1,33 @@
+@import 'variables';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+.line-breaks {
+    white-space: pre-wrap;
+}
+
+.flex-truncate {
+    min-width: 0;
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.icon-small {
+    font-size: 1.5rem;
+}
+
+.sticky-left{
+    position: sticky;
+    left: 0;
+}
+
+spinner-border-large {
+    width: 10rem;
+    height: 10rem;
+}
+
+.dropdown-item.active{
+    color: #212529;
+}

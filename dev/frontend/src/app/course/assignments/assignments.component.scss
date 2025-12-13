@@ -1,0 +1,14 @@
+@use "sass:map";
+@import "variables";
+
+.icon {
+    font-size: 2rem;
+}
+
+.card-body {
+    font-size: .75rem;
+}
+
+.missing:last-of-type .list-group-item {
+    border-bottom-color: map.get($theme-colors, "danger");
+}

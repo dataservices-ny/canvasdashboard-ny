@@ -1,0 +1,277 @@
+<ng-template #spinner>
+    <div *ngIf="current_grade$ | async" class="d-flex justify-content-left">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>
+
+<div *ngIf="(filtered_students$ | async) && !(listUpdating$ | async); else spinner">
+    <div class="form-check pb-2">
+        <input class="form-check-input" type="checkbox" id="countRubricOnly" (change)="updateCountRubricOnly($event.target.checked)">
+        <label class="form-check-label" for="countRubricOnly">
+          Count only assignments with rubric
+        </label>
+    </div>
+    <div class="table-container">
+        <table class="table table-hover table-bordered table-fixed-header rotated-header">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="loading">
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                                Loaded?
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                                Total Assignments
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-success">
+                                <icon-circle-check class="icon-small"></icon-circle-check>
+                                &nbsp; Complete
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-danger">
+                                <icon-circle-x class="icon-small"></icon-circle-x>
+                                &nbsp; Incomplete
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                                <icon-circle class="icon-small"></icon-circle>
+                                &nbsp; Non-graded
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-danger">
+                                <icon-circle-x class="icon-small"></icon-circle-x>
+                                &nbsp; Missing
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                                <span class="badge badge-late px-1 py-1 my-0" style="font-size: 100%;">L</span>&nbsp; Late
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                                Outcome Proficiency
+                            </div>
+                        </div>
+                    </th>
+                    <th scope="col" class="courses-th pl-4 pb-2">
+                        Course data and most recent feedback.
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="(number$ | async) == null" class="grade-average">
+                
+                    <td class="student-col text-truncate align-middle">Grade Average</td>
+
+                    <td class="loading align-middle">
+                        <div class="text-center">
+                            <span>
+                                <div *ngIf="adminService.anyCourseLoading(filtered_students$ | async); else loaded" class="spinner-grow spinner-grow-sm" role="status"></div>
+                                <div class="text-center align-items-center">
+                                    <div class="text-center">
+                                        <ng-template #loaded>
+                                            <icon-check></icon-check>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_total_assignments$ | async) != null" class="text-center">
+                            {{ avg_total_assignments$.value }}
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_complete_assignments$ | async) != null && (avg_pct_complete_assignments$ | async) != null" class="text-success text-center">
+                            <strong>{{ avg_pct_complete_assignments$.value }}%</strong>&nbsp; ({{ avg_complete_assignments$.value }})
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_incomplete_assignments$ | async) != null && (avg_pct_incomplete_assignments$ | async) != null" class="text-center text-danger">
+                            <strong>{{ avg_pct_incomplete_assignments$.value }}%</strong>&nbsp; ({{ avg_incomplete_assignments$.value }})
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_non_graded_assignments$ | async) != null && (avg_pct_non_graded_assignments$ | async) != null" class="text-center">
+                            <strong>{{ avg_pct_non_graded_assignments$.value }}%</strong>&nbsp; ({{ avg_non_graded_assignments$.value }})
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_missing_assignments$ | async) != null && (avg_pct_missing_assignments$ | async) != null" class="text-center text-danger">
+                            <strong>{{ avg_pct_missing_assignments$.value }}%</strong>&nbsp; ({{ avg_missing_assignments$.value }})
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_late_assignments$ | async) != null && (avg_pct_late_assignments$ | async) != null" class="text-center">
+                            <strong>{{ avg_pct_late_assignments$.value }}%</strong>&nbsp; ({{ avg_late_assignments$.value }})
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="(avg_pct_outcomes_proficiency$ | async) != null" class="text-center">
+                            <strong>{{ avg_pct_outcomes_proficiency$.value }}%</strong>
+                        </div>
+                    </td>
+
+                    <td class="courses-td small align-middle py-1 px-2 mx-1"></td>
+
+                </tr>
+
+                <tr *ngFor="let student of filtered_students$ | async | keyvalue | sortBy:'asc':'value.sortable_name'">
+                
+                    <td class="student-col text-truncate align-middle">
+                        <a [routerLink]="['/', 'dashboard', 'student', student.value.id]" class="text-link" target="_blank">{{ student.value.name }} ({{ student.value.grade }})</a>
+                    </td>
+
+                    <td class="loading align-middle">
+                        <div class="text-center">
+                            <span>
+                                <div *ngIf="!student_courses_loaded || adminService.coursesLoading(student.value.courses); else loaded" class="spinner-grow spinner-grow-sm" role="status"></div>
+                                <div class="text-center align-items-center">
+                                    <div class="text-center">
+                                        <ng-template #loaded>
+                                            <icon-check></icon-check>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="student.value.total_submissions != null" class="text-center">
+                            {{ student.value.total_submissions }}
+                            <span *ngIf="(number$ | async) == null && student.value.total_submissions < (avg_total_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.total_submissions > (avg_total_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.total_submissions == (avg_total_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div> 
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="student.value.percent_complete != null" class="text-success text-center">
+                            <strong>{{ student.value.percent_complete }}%</strong>&nbsp; ({{ student.value.total_complete }})
+                            <span *ngIf="(number$ | async) == null && student.value.percent_complete < (avg_pct_complete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_complete > (avg_pct_complete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_complete == (avg_pct_complete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle {{ student.value.percent_incomplete >= 25 ? 'bg-danger' : '' }}">
+                        <div *ngIf="student.value.percent_incomplete != null" class="text-center {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-danger' }}">
+                            <strong>{{ student.value.percent_incomplete }}%</strong>&nbsp; ({{ student.value.total_incomplete }})
+                            <span *ngIf="(number$ | async) == null && student.value.percent_incomplete < (avg_pct_incomplete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_incomplete > (avg_pct_incomplete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_incomplete == (avg_pct_incomplete_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="student.value.percent_non_graded != null" class="text-center">
+                            <strong>{{ student.value.percent_non_graded }}%</strong>&nbsp; ({{ student.value.total_non_graded }})
+                            <span *ngIf="(number$ | async) == null && student.value.percent_non_graded < (avg_pct_non_graded_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_non_graded > (avg_pct_non_graded_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_non_graded == (avg_pct_non_graded_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle {{ student.value.percent_missing >= 25 ? 'bg-danger' : '' }}">
+                        <div *ngIf="student.value.percent_missing != null" class="text-center {{ student.value.percent_missing >= 25 ? 'text-white' : 'text-danger' }}">
+                            <strong>{{ student.value.percent_missing }}%</strong>&nbsp; ({{ student.value.total_missing }})
+                            <span *ngIf="(number$ | async) == null && student.value.percent_missing < (avg_pct_missing_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_missing > (avg_pct_missing_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_missing == (avg_pct_missing_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle {{ student.value.percent_incomplete >= 25 ? 'text-white' : 'text-secondary' }}"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle {{ student.value.percent_late >= 25 ? 'bg-warning' : '' }}">
+                        <div *ngIf="student.value.percent_late != null" class="text-center">
+                            <strong>{{ student.value.percent_late }}%</strong>&nbsp; ({{ student.value.total_late }})
+                            <span *ngIf="(number$ | async) == null && student.value.percent_late < (avg_pct_late_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_late > (avg_pct_late_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_late == (avg_pct_late_assignments$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="align-middle">
+                        <div *ngIf="student.value.percent_proficient_advanced != null" class="text-center">
+                            <strong>{{ student.value.percent_proficient_advanced >= 0 ? student.value.percent_proficient_advanced + '%' : ''}}</strong>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_proficient_advanced < (avg_pct_outcomes_proficiency$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-down-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Below average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_proficient_advanced > (avg_pct_outcomes_proficiency$ | async)" class="mb-1 ml-2"> <i class="bi bi-arrow-up-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="Above average"></i></span>
+                            <span *ngIf="(number$ | async) == null && student.value.percent_proficient_advanced == (avg_pct_outcomes_proficiency$ | async)" class="mb-1 ml-2"> <i class="bi bi-pause-circle"  placement="top" tooltipClass="tooltip" ngbTooltip="On average"></i></span>
+                        </div>
+                    </td>
+
+                    <td class="courses-td small align-middle py-1 px-2 mx-1">
+                        <div class="d-flex flex-row">
+                            <div *ngFor="let course of student.value.courses | keyvalue" class="course d-flex flex-column text-truncate p-1 mx-1 border">
+                                <div *ngIf="course.value.course_name" class="text-left text-truncate pb-1"><strong><a [routerLink]="['/', 'course', course.key, 'student', student.key]">{{ course.value.course_name }}</a></strong></div>
+                                <div *ngIf="course.value.total_submissions > 0" class="d-flex flex-row">
+                                    <div class="d-inline-flex text-success pr-1">
+                                        <icon-circle-check class="icon-small"></icon-circle-check> {{ course.value.complete }}
+                                    </div>
+                                    <div class="d-inline-flex text-danger pr-1">
+                                        <icon-circle-x class="icon-small"></icon-circle-x> {{ course.value.incomplete }}
+                                    </div>
+                                    <div class="pr-1 border-right">
+                                        <span class="badge badge-late px-1 py-1 my-0" style="font-size: 100%;">L</span> {{ course.value.late }}
+                                    </div>
+                                    <div *ngFor="let submission of course.value.recent_submissions" 
+                                         role="button"     
+                                         class="d-inline-flex pl-1 border-left" 
+                                         (click)="assignmentModalService.openAssignment(student.key, course.key, submission._id)"
+                                         [title]="(dataService.getAssignment(course.key, student.key, submission._id) | async).name">
+                                        <div *ngIf="['complete', 'incomplete', null].indexOf(submission.grade) == -1">
+                                            <span class="badge badge-secondary px-1 py-1 mr-1 small">{{ submission.grade }}</span>
+                                        </div>
+                                        <div *ngIf="submission.rubric">
+                                            <div *ngFor="let criteria of submission.rubric | keyvalue" class="d-inline-flex">
+                                                <app-rubric-badge [points]="criteria.value.points" [skinny]="true" [extra_class]="'admin-small'"></app-rubric-badge>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

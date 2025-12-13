@@ -1,0 +1,22 @@
+@use "sass:color";
+@import "variables";
+
+.nav {
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    color: $body-color;
+}
+
+.nav-link.active {
+    color: $body-color !important;
+}
+
+.gradebook-header {
+    max-width: 800px;
+}
+
+.nav-link:not(.active) {
+    color: color.scale($body-color, $lightness: 30%);
+}

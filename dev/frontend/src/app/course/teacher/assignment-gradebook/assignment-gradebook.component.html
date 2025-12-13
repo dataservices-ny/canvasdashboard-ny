@@ -1,0 +1,133 @@
+<div *ngIf="course$ | async as course">
+    <div *ngIf="some_loaded; else spinner" class="table-container">
+        <table class="table table-hover table-bordered table-fixed-header rotated-header">
+        <thead>
+            <tr>
+                <th scope="col">Student</th>
+                <th>
+                    <div class="rotated-header-container">
+                        <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-success">
+                            <icon-circle-check class="icon-small"></icon-circle-check>
+                            &nbsp; Complete
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="rotated-header-container">
+                        <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-danger">
+                            <icon-circle-x class="icon-small"></icon-circle-x>
+                            &nbsp; Incomplete
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="rotated-header-container">
+                        <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                            <icon-circle class="icon-small"></icon-circle>
+                            &nbsp; Non-graded
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="rotated-header-container">
+                        <div class="rotated-header-content small text-truncate d-inline-flex align-items-center text-danger">
+                            <icon-circle-x class="icon-small"></icon-circle-x>
+                            &nbsp; Missing
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="rotated-header-container">
+                        <div class="rotated-header-content small text-truncate d-inline-flex align-items-center">
+                            <span class="badge badge-late px-1 py-1 my-0" style="font-size: 100%;">L</span>&nbsp; Late
+                        </div>
+                    </div>
+                </th>
+                <ng-template ngFor let-assignment [ngForOf]="sorted_assignments" let-i="index">
+                    <th class="column--{{i}}" [hidden]="assignment.hidden">
+                        <div class="rotated-header-container">
+                            <div class="rotated-header-content small text-truncate">
+                                {{ course.assignments[assignment.id].name }}
+                            </div>
+                        </div>
+                    </th>
+                </ng-template>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of course.sections[(sectionService.current_section | async)].students">
+            
+                <td class="text-truncate">
+                    <a routerLink="/course/{{course.course_id}}/student/{{student.id}}" class="text-link">{{ student.name }}</a>
+                </td>
+
+                <td>
+                    <div *ngIf="complete_count(student.id) | async as complete" class="d-flex flex-row justify-content-center align-items-center">
+                        {{ complete.count }} <span class="small ml-2">({{ complete.percentage | percent:'1.0' }})</span>
+                    </div>
+                </td>
+                
+                <td>
+                    <div *ngIf="incomplete_count(student.id) | async as incomplete" class="d-flex flex-row justify-content-center align-items-center text-danger">
+                        {{ incomplete.count }} <span class="small ml-2">({{ incomplete.percentage | percent:'1.0' }})</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div *ngIf="non_graded_count(student.id) | async as non_graded" class="d-flex flex-row justify-content-center align-items-center">
+                        {{ non_graded.count }} <span class="small ml-2">({{ non_graded.percentage | percent:'1.0' }})</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div *ngIf="missing_count(student.id) | async as missing" class="d-flex flex-row justify-content-center align-items-center text-danger">
+                        {{ missing.count }}
+                    </div>
+                </td>
+
+                <td>
+                    <div *ngIf="late_count(student.id) | async as late" class="d-flex flex-row justify-content-center align-items-center">
+                        {{ late.count }} <span class="small ml-2">({{ late.percentage | percent:'1.0' }})</span>
+                    </div>
+                </td>
+
+                <ng-template ngFor let-assignment [ngForOf]="sorted_assignments" let-i="index">
+                        <td *ngIf="get_submission(course, assignment, student.id) as submission; else empty" class="column--{{i}}" [hidden]="assignment.hidden">
+                            <div class="icon icon-small d-flex flex-row justify-content-center align-items-center"
+                                role="button" (click)="assignmentModalService.openAssignment(student.id, course.course_id, assignment.id)">
+                                
+                                <div *ngIf="!assignmentsService.letter_number(course.assignments[submission._id], submission)">
+                                    <div *ngIf="submission.complete == true" class="icon-circle-check text-success" placement="top">
+                                        <icon-circle-check class="text-success" placement="top"></icon-circle-check>
+                                    </div>
+                                    <div *ngIf="submission.complete == null">
+                                        <icon-circle class="text-muted" placement="top"></icon-circle>
+                                    </div>
+                                    <div *ngIf="submission.complete == false">
+                                        <i class="icon icon-circle-check"></i>
+                                        <icon-circle-x class="text-danger"></icon-circle-x>
+                                    </div>
+                                </div>
+                                
+                                <div *ngIf="assignmentsService.letter_number(course.assignments[submission._id], submission) as grade" class="badge badge-secondary px-1 ml-1" style="height: 19.5px; font-size: .85rem;">{{ grade }}</div>
+                                <div *ngIf="submission.late" class="badge badge-late px-1 ml-1 small" style="height: 19.5px; font-size: .85rem;">L</div>
+                                <div *ngIf="submission.rubric" class="icon icon-small ml-1 text-secondary"><icon-rubric placement="top"></icon-rubric></div>
+                                <div *ngIf="assignmentsService.comments_exist(submission)" class="icon icon-small ml-1 text-secondary"><icon-comment placement="top"></icon-comment></div>
+                            </div>
+                        </td>
+                    <ng-template #empty><td class="column--{{i}}" [hidden]="assignment.hidden"></td></ng-template>
+                </ng-template>
+
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

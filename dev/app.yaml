@@ -1,0 +1,31 @@
+runtime: python37
+env: standard
+entrypoint: gunicorn -b :$PORT --limit-request-line 8190 main:app
+
+runtime_config:
+  python_version: 3
+
+handlers:
+  - url: /static
+    static_dir: static
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always
+
+# The env_variables and vpc_access_connector need
+# to be entered for each instance of the app
+# after running build-servers.sh, copy this template
+# to the build-campus directory and enter the required
+# values. 
+
+env_variables:
+  GCP_PROJECT: '<<GOOGLE_CLOUD_PROJECT_ID>>'
+  CANVAS_DEV_KEY_CLIENT_ID: '<<CANVAS_DEV_KEY>>'
+  CANVAS_BASE_URL: '<<CANVAS_BASE_URL>>'
+  REDISHOST: '10.79.228.27'
+  REDISPORT: '6379'
+
+vpc_access_connector:
+  name: '<<VPC_ACCESS_CONNECTOR_FROM_GOOGLE_CLOUD_PROJECT>>'

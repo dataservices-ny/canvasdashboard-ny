@@ -1,0 +1,15 @@
+# This file specifies files that are *not* uploaded to Google Cloud Platform 
+# using gcloud.
+
+.gcloudignore
+.git 
+.gitignore
+
+# No need to deploy gunicorn config.  Environment variables are loaded
+# through app.yaml when deployed.
+gunicorn.conf.py
+
+
+# Python pycache:
+__pycache__/
+

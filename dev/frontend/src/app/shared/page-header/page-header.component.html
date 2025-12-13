@@ -1,0 +1,20 @@
+<div class="header">
+
+  <div class="d-flex flex-row border-bottom border-dark pb-2 mb-3">
+    
+    <div *ngIf="sidebarService.lti == false">
+      <h2 *ngIf="sidebarService.show_toggle_button" role="button" (click)=toggle_sidebar() class="icon mt-2 mr-2 show-nav-button">
+        <icon-list></icon-list>
+      </h2>
+    </div>
+    
+    <div>
+      <h2 *ngIf="title.length > 0">{{ title }}</h2>
+      <h4 *ngIf="subtitle">{{ subtitle }}</h4>
+    </div>
+
+  </div>
+    
+</div>
+
+

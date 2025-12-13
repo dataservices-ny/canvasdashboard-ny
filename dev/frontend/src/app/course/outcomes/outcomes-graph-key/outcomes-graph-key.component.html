@@ -1,0 +1,55 @@
+<div *ngIf="isCollapsed" class="mb-3 text-info d-inline-flex align-items-center"
+     role="button" (click)="isCollapsed = !isCollapsed"
+     [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+    <icon-key class="icon icon-small mr-1"></icon-key>
+    show key
+</div>
+
+<div *ngIf="!isCollapsed" class="card mx-0 mb-3">
+    <div class="card-header d-inline-flex align-items-center">
+        <icon-key class="icon icon-small mr-1"></icon-key>
+        Key
+        <div role="button" class="small ml-auto text-info"
+             (click)="isCollapsed = !isCollapsed"
+             [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+            hide key
+        </div>
+    </div>
+    <div id="keyBody" [ngbCollapse]="isCollapsed" class="card-body">
+        <div class="container">
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="row">
+                        <div class="d-flex flex-row justify-content-center align-items-center">
+                            <div class="key-dot" [style.width]="'12px'" [style.height]="'12px'" [style.opacity]=".5"></div>
+                            <div class="key-dot" [style.width]="'13.7px'" [style.height]="'13.7px'" [style.opacity]=".57"></div>
+                            <div class="key-dot" [style.width]="'16px'" [style.height]="'16px'" [style.opacity]=".67"></div>
+                            <div class="key-dot" [style.width]="'19.2px'" [style.height]="'19.2px'" [style.opacity]=".8"></div>
+                            <div class="key-dot" [style.width]="'24px'" [style.height]="'24px'" [style.opacity]="1"></div>
+                            <div class="pl-2">More recent assessments are larger and darker</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col px-0">
+                    <div class="progress progress-key">
+                        <div class="progress-bar bg-graph-not-yet progress-key-bar" [style.width]="'16.66667%'">Not Yet</div>
+                        <div class="progress-bar bg-graph-developing progress-key-bar" [style.width]="'33.33333%'">Developing</div>
+                        <div class="progress-bar bg-graph-proficient progress-key-bar" [style.width]="'33.33333%'">Proficient</div>
+                        <div class="progress-bar bg-graph-advanced progress-key-bar" [style.width]="'16.66667%'">Advanced</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rubricKeyBody" [ngbCollapse]="rubricIsCollapsed" class="row mb-2">
+                <div class="col">
+                    <app-rubric-key></app-rubric-key>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

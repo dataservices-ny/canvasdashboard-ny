@@ -1,0 +1,58 @@
+<div class="d-flex flex-truncate align-items-center">
+
+    <div class="icon mr-2">
+
+        <ng-template [ngIf]="assignment.gradingType=='not_graded'" [ngIfElse]="graded">
+            <icon-circle-fill class="text-primary" placement="top" tooltipClass="tooltip" ngbTooltip="Not a graded assignment.">
+            </icon-circle-fill>
+        </ng-template>
+
+        <ng-template #graded>
+            <div *ngIf="submission.complete == true">
+                <icon-circle-check class="text-success" placement="top" tooltipClass="tooltip" ngbTooltip="Complete">
+                </icon-circle-check>
+            </div>
+            <div *ngIf="submission.complete == null && submission.missing == false">
+                <icon-circle class="text-muted" placement="top" tooltipClass="tooltip" ngbTooltip="Not graded yet">
+                </icon-circle>
+            </div>
+            <div *ngIf="submission.missing == true && submission.complete == null">
+                <icon-circle-x class="text-danger" placement="top" tooltipClass="tooltip" ngbTooltip="Missing">
+                </icon-circle-x>
+            </div>
+            <div *ngIf="submission.complete == false">
+                <icon-circle-x class="text-danger" placement="top" tooltipClass="tooltip" ngbTooltip="Incomplete">
+                </icon-circle-x>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="d-flex flex-column flex-truncate">
+        <div *ngIf="submission.dueAt; else assignmentDueAt"><small>{{ (submission.dueAt | date:'M/d') }}</small></div>
+        <ng-template #assignmentDueAt>
+            <div *ngIf="assignment.dueAt[0].date"><small>{{ (assignment.dueAt[0].date | date:'M/d') }}</small></div>
+        </ng-template>
+        <div class="d-inline-flex flex-truncate">
+            <div [ngClass]="{ 'text-truncate': assignment.isCollapsed }" class="mr-2">{{ assignment.name }}</div>
+            <span *ngIf="assignmentsService.letter_number(assignment, submission) as grade"
+                class="badge badge-secondary px-1 py-1 mr-2 small"
+                style="height: 19.5px; font-size: .85rem;">{{ grade }}</span>
+            <span *ngIf="submission.rubric" class="icon icon-small mr-2 text-secondary">
+                <icon-rubric placement="top" tooltipClass="tooltip" ngbTooltip="Rubric Grade"></icon-rubric>
+            </span>
+            <span *ngIf="assignmentsService.comments_exist(submission)" class="icon icon-small mr-2 text-secondary">
+                <icon-comment placement="top" tooltipClass="tooltip" ngbTooltip="Comments"></icon-comment>
+            </span>
+            <ng-template [ngIf]="assignment.submittable">
+                <span *ngIf="submission.submitted_at; else notSubmitted" class="badge badge-info px-1 py-1 mr-2 small" style="height: 19.5px; font-size: .85rem;">submitted</span>
+                <ng-template #notSubmitted >
+                    <ng-template [ngIf]="!upcoming">
+                        <span *ngIf="!submission.complete || !(assignment.gradingType=='not_graded')" class="badge badge-danger px-1 py-1 mr-2 small" style="height: 19.5px; font-size: .85rem;">not submitted</span>
+                    </ng-template>
+                </ng-template>
+            </ng-template>
+            <span *ngIf="submission.late" class="badge badge-late px-1 py-1 mr-2 small"
+                style="height: 19.5px; font-size: .85rem;">late</span>
+        </div>
+    </div>
+</div>

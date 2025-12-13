@@ -1,0 +1,67 @@
+<div *ngIf="outcomes; else spinner" class="list-group list-group-flush">
+    
+    <app-outcomes-key></app-outcomes-key>
+    
+    <div *ngIf="assessments_loaded; else spinner">
+
+        <div *ngIf="(outcomes | json) == '{}'">
+            No outcome-based assessments found.
+        </div>
+
+        <div *ngFor="let outcome of outcomes | keyvalue" class="list-group-item border-bottom-0 py-0">
+            <div *ngIf="outcome.value.assessments.length > 0" class="row border-bottom pt-2 pb-1 border-bottom-1">
+                <div role="button" (click)="collapse(outcome.key)"
+                    [attr.aria-expanded]="!outcomes_collapsed[outcome.key]" attr.aria-controls="o-body-{{outcome.key}}">
+                    
+                    <div *ngIf="outcomes_collapsed[outcome.key]" class="d-inline-flex align-items-center">
+                        <!-- <div class="d-none d-sm-block small">show list</div> -->
+                        <icon-plus class="icon"></icon-plus>
+                    </div>
+                    <div *ngIf="!outcomes_collapsed[outcome.key]" class="d-inline-flex align-items-center">
+                        <!-- <div class="d-none d-sm-block small">hide list</div> -->
+                        <icon-dash class="icon"></icon-dash>
+                    </div>
+
+                </div>
+
+                <div class="col-4 text-truncate pt-1">
+                    {{outcome.value.title}}
+                </div>
+                
+                <div class="col d-flex d-inline-flex badge-row pt-1 pb-3" #scroller>
+
+                    <div *ngFor="let assessment of outcome.value.assessments | sortBy:'asc':'dueAt'; index as i; count as count;" 
+                        role="button"
+                        (click)="assignmentModalService.openAssignment(student_id, course_id, assessment.assignment_id)"
+                        [ngbTooltip]="tooltip"
+                        container="body"
+                        tooltipClass="points-tooltip"
+                        >
+                        <app-rubric-badge *ngIf="i < count - 3" [points]="assessment.points" [skinny]="true"></app-rubric-badge>
+                        <app-rubric-badge *ngIf="i > count - 4" [points]="assessment.points"></app-rubric-badge>
+
+                        <ng-template #tooltip>
+                            <app-outcome-points-tooltip [assessment]="assessment"></app-outcome-points-tooltip>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row card-body" 
+                id="o-body-{{outcome.key}}" [ngbCollapse]="outcomes_collapsed[outcome.key]">
+                <div class="row d-flex d-inline-flex small" [innerHTML]="outcome.value.description"></div>
+                <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments"></app-outcome-assignment-list>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

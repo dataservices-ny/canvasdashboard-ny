@@ -1,0 +1,99 @@
+<app-page-header [title]="'Dashboard Directory'"></app-page-header>
+
+<div class="mb-4">
+    <app-student-search [size]="''"></app-student-search>
+</div>
+
+<div *ngIf="user$ | async as user; else spinner" class="row">
+        
+    <div *ngIf="user.teacher" class="col-md">
+        
+        <h3>Courses</h3>
+        <ul class="list-group list-group-flush mb-4">
+            <div *ngFor="let course of user.teacher">
+                <div class="list-group-item pl-3 border-left-0 border-right-0 border-top-0">
+                    <div class="card border-0">
+                        <div class="card-title d-inline-flex align-items-center mb-0">
+                            
+                            <a routerLink="/course/{{course.course_id}}">
+                                <span class="text-truncate">{{ course.course_name }}</span>
+                            </a>
+                            <div role="button" (click)="collapseCourse(course.course_id)" class="ml-auto"
+                                 [attr.aria-expanded]="!course_isCollapsed[course.course_id]" attr.aria-controls="student-list-{{course.course_id}}">
+                                
+                                <icon-plus *ngIf="course_isCollapsed[course.course_id]" class="icon"></icon-plus>
+                                <icon-dash *ngIf="!course_isCollapsed[course.course_id]" class="icon"></icon-dash>
+                            </div>
+                        </div>
+                        <div class="card-body py-2 pl-1"
+                            id="student-list-{{course.course_id}}" 
+                            [ngbCollapse]="course_isCollapsed[course.course_id]">
+                            
+                            <div *ngFor="let section of course.sections | keyvalue | sortBy:'asc':'value.section_name'" class="pb-1">
+                                
+                                <div *ngIf="section.key != 'all'">
+
+                                    <div class="pb-1 border-bottom">{{ section.value.section_name }}</div>
+                                
+                                    <div *ngFor="let student of section.value.students" class="pb-1">
+                                        <a routerLink="/course/{{ course.course_id }}/student/{{ student.id }}">
+                                            {{ student.name }}
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+
+    </div>
+
+    <div *ngIf="user.observer" class="col-md">
+        
+        <h3>Observed Students</h3>
+        <ul class="list-group list-group-flush mb-4">
+            <div *ngFor="let student of user.observer">
+                <div class="list-group-item pl-3 border-left-0 border-right-0 border-top-0">
+                    <div class="card border-0">
+                        <div class="card-title d-inline-flex align-items-center mb-0">
+                            
+                            <a routerLink="/dashboard/student/{{student.id}}">
+                                {{ student.name }}
+                            </a>
+                            <div role="button" (click)="collapseStudent(student.id)" class="ml-auto"
+                                 [attr.aria-expanded]="!student_isCollapsed[student.id]" attr.aria-controls="course-list-{{student.id}}">
+                                <icon-plus *ngIf="student_isCollapsed[student.id]" class="icon"></icon-plus>
+                                <icon-dash *ngIf="!student_isCollapsed[student.id]" class="icon"></icon-dash>
+                            </div>
+                        </div>
+                        <div class="card-body py-2 pl-1"
+                            id="course-list-{{student.id}}" 
+                            [ngbCollapse]="student_isCollapsed[student.id]">
+                            <div *ngFor="let course of student.courses">
+                                <a routerLink="/course/{{ course.course_id }}/student/{{ student.id }}">
+                                    {{ course.course_name }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+
+    </div>
+
+
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

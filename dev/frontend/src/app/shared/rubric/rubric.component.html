@@ -1,0 +1,21 @@
+<div *ngIf="!rubric_mismatch(assignment.rubric, submission_rubric); else mismatch" class="list-group list-group-flush">
+    <div *ngFor="let row of assignment.rubric | keyvalue | sortBy:'asc':'value.description'" class="list-group-item">
+        <div class="row">
+            <div class="col-score">
+                <div *ngIf="submission_rubric">
+                    <app-rubric-badge *ngIf="submission_rubric[row.key]" [points]="submission_rubric[row.key].points"></app-rubric-badge>
+                </div>
+            </div>
+            <div class="col font-weight-bold text-truncate">{{ row.value.description }}</div>
+            <div class="w-100"></div>
+            <div class="col-score"></div>
+            <div *ngIf="submission_rubric">
+                <div *ngIf="submission_rubric[row.key]" class="col line-breaks">{{ submission_rubric[row.key].comments }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #mismatch>
+    <div class="mb-1">Looks like there is a problem with this rubric.  Try heading to the <a href="{{assignment.htmlUrl}}" target="_blank">assignment page</a>.</div>
+</ng-template>

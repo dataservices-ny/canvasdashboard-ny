@@ -1,0 +1,13 @@
+<nav *ngIf="pages.length > 1" aria-label="page navigation">
+    <ul class="pagination">
+        <li class="page-item {{ page == 1 ? 'disabled' : '' }}">
+            <button class="page-link" (click)="adminService.changePage(page-1)" tabindex="-1">Previous</button>
+        </li>
+        <li *ngFor="let p of pages" class="page-item {{ page == p+1 ? 'disabled' : '' }}">
+            <button class="page-link" (click)="adminService.changePage(p+1)">{{p+1}}</button>
+        </li>
+        <li class="page-item {{ page == pages.length ? 'disabled' : '' }}">
+            <button class="page-link" (click)="adminService.changePage(page+1)">Next</button>
+        </li>
+    </ul>
+</nav>

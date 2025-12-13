@@ -1,0 +1,8 @@
+@import "variables";
+
+.tooltip .tooltip-inner {
+    background-color: $aves-light-gray-button-text;
+}
+.tooltip .arrow::before {
+    border-top-color: $aves-light-gray-button-text;
+}

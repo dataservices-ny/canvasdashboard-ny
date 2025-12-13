@@ -1,0 +1,25 @@
+<div *ngIf="isCollapsed" class="mb-3 text-info d-inline-flex align-items-center"
+     role="button" (click)="isCollapsed = !isCollapsed"
+     [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+    <icon-key class="icon icon-small mr-1"></icon-key>
+    show key
+</div>
+
+<div *ngIf="!isCollapsed" class="card mx-0 mb-3">
+    <div class="card-header d-inline-flex align-items-center">
+        <icon-key class="icon icon-small mr-1"></icon-key>
+        Outcome Assessment Key
+        <div role="button" class="small ml-auto text-info"
+             (click)="isCollapsed = !isCollapsed"
+             [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+            hide key
+        </div>
+    </div>
+    <div id="keyBody" [ngbCollapse]="isCollapsed" class="card-body">
+        <div class="container">
+            <div class="row px-3">
+                <app-rubric-key></app-rubric-key>
+            </div>
+        </div>
+    </div>
+</div>

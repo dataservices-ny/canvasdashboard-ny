@@ -1,0 +1,13 @@
+<div *ngIf="activity.type == 'event'" class="list-group-item px-0">
+    Start: <strong>{{(activity.startAt | date: 'M/d h:mm a')}}</strong><br/>
+    End: <strong>{{(activity.startAt | date: 'M/d h:mm a')}}</strong><br/>
+</div>
+
+<div *ngIf="activity.description && activity.description.length > 0" class="list-group-item px-0">
+    Description
+    <div class="py-2" [innerHTML]="activity.description"></div>
+</div>
+
+<div class="list-group-item px-0">
+    <a href="{{activity.htmlUrl}}" target="_blank">View activity page</a>
+</div>

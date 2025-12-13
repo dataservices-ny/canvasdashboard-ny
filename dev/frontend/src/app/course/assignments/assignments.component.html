@@ -1,0 +1,142 @@
+<div *ngIf="!show_spinner; else spinner">
+  
+  <app-assignments-key [has_number_letter_grades]="has_number_letter_grades"></app-assignments-key>
+  
+  <!-- Coures Activities and To Dos -->
+  <div *ngIf="upcoming" class="mt-2 mb-5">
+
+    <div *ngIf="num_keys(upcoming) > 0" class="list-group list-group-flush">
+
+      <div class="d-flex border-bottom mb-1">
+        <h4 class="text-truncate">{{ num_keys(upcoming) > 0 ? num_keys(upcoming)+' ' : '' }}Upcoming Assignments and {{ num_keys(upcoming) != 1 ? 'Activities' : 'Activity'}}</h4>
+      </div>
+
+      <div *ngFor="let activity of upcoming | keyvalue | sortBy:'asc':'value.dueAt'">
+            
+        <!-- If the upcoming item is an activity, then it will have the 'type' property -->
+        <div *ngIf="activity.value.type; else upcoming_assignment" class="list-group-item pl-3 border-left-0 border-right-0 border-top-0">
+          <div class="card border-0">
+            
+            <div class="card-title d-inline-flex align-items-center mb-0"
+                  role="button" (click)="activity.value.isCollapsed = !activity.value.isCollapsed"
+                  [attr.aria-expanded]="!activity.value.isCollapsed" attr.aria-controls="e-body-{{activity.value._id}}">
+                  
+              <div class="icon mr-2">
+                <icon-circle class="text-muted" placement="top" tooltipClass="tooltip" ngbTooltip="Not graded yet">
+                </icon-circle>
+              </div>
+              <div class="d-flex flex-column flex-truncate">  
+                <div class="small">{{(activity.value.dueAt | date: 'M/d')}}</div>
+                <div>{{ activity.value.name }}</div>
+              </div>
+              
+              <icon-plus *ngIf="activity.value.isCollapsed" class="icon ml-auto"></icon-plus>
+              <icon-dash *ngIf="!activity.value.isCollapsed" class="icon ml-auto"></icon-dash>
+
+            </div>
+
+            <div class="card-body py-2 pl-1 list-group list-group-flush" 
+                id="e-body-{{activity.value._id}}" 
+                [ngbCollapse]="activity.value.isCollapsed">
+
+                <app-activity-body [activity]="activity.value" class="card-body py-2 pl-1 list-group list-group-flush"></app-activity-body>
+
+            </div>
+          
+          </div>
+
+        </div>
+
+        <ng-template #upcoming_assignment>
+          <ng-container *ngTemplateOutlet="assignment_item; context: { submission: activity.value, upcoming: true, color: 'text-body', extraClass: '' }"></ng-container>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="submissions">
+    <!-- Incomplete or Missing Assignments -->
+    <div *ngIf="submissions.incomplete_or_missing">
+      <div *ngIf="submissions.incomplete_or_missing.length > 0" class="mb-5">
+        <div class="d-flex border-bottom border-danger text-danger mb-1">
+          <h4 class="text-truncate">{{ submissions.incomplete_or_missing.length }} Missing/Incomplete {{ submissions.incomplete_or_missing.length != 1 ? 'Assignments' : 'Assignment'}}</h4>
+          <ng-container *ngTemplateOutlet="expand_collapse; context: { submissions: submissions.incomplete_or_missing }"></ng-container>
+        </div>
+        <div *ngTemplateOutlet="assignment_list; context: { submissions: submissions.incomplete_or_missing, color: 'text-danger', extraClass: 'missing' }"></div>
+      </div>
+    </div>
+  
+    <!-- Pending assignments -->
+    <div *ngIf="submissions.pending">
+      <div *ngIf="submissions.pending.length > 0" class="mb-5">
+        <div class="d-flex border-bottom mb-1">
+          <h4 class="text-truncate">Not graded yet</h4>
+          <ng-container *ngTemplateOutlet="expand_collapse; context: { submissions: submissions.pending }"></ng-container>
+        </div>
+      </div>
+      <div *ngTemplateOutlet="assignment_list; context: { submissions: submissions.pending, color: 'text-body', extraClass: '' }"></div>
+    </div>
+
+    <!-- Complete assignments -->
+    <div *ngIf="submissions.complete && submissions.complete.length > 0">
+      <div class="d-flex border-bottom mb-1">
+        <h4 class="text-truncate">Complete</h4>
+        <ng-container *ngTemplateOutlet="expand_collapse; context: { submissions: submissions.complete }"></ng-container>
+      </div>
+    </div>
+    
+    <ng-container *ngTemplateOutlet="assignment_list; context: { submissions: submissions.complete, color: 'text-body', extraClass: '' }"></ng-container>
+  
+  </div>
+
+</div>
+
+
+<!-- Assignment List -->
+<ng-template #assignment_list let-submissions="submissions" let-color="color" let-extraClass="extraClass">
+  <ul class="list-group list-group-flush mb-4">
+    <div *ngFor="let submission of submissions | sortBy:'desc':'dueAt'" class="{{extraClass}}">
+      <ng-container *ngTemplateOutlet="assignment_item; context: { submission: submission, color: color, extraClass: extraClass }"></ng-container>
+    </div>
+  </ul>
+</ng-template>
+
+<!-- Assignment Item -->
+<ng-template #assignment_item let-submission="submission" let-color="color" let-extraClass="extraClass">
+  <div *ngIf="assignments[submission._id] as assignment">
+    <div *ngIf="assignment.published" class="list-group-item pl-3 border-left-0 border-right-0 border-top-0">
+      <div class="card border-0">
+          <div class="card-title {{color}} d-inline-flex align-items-center mb-0"
+              role="button" (click)="assignmentsService.collapse(assignment)"
+              [attr.aria-expanded]="!assignment.isCollapsed" attr.aria-controls="a-body-{{assignment._id}}">
+              
+            <app-assignment-title [assignment]="assignment" [submission]="submission" [upcoming]="true" class="flex-truncate"></app-assignment-title>
+            <icon-plus *ngIf="assignment.isCollapsed" class="icon ml-auto"></icon-plus>
+            <icon-dash *ngIf="!assignment.isCollapsed" class="icon ml-auto"></icon-dash>
+
+          </div>
+          <app-assignment-body [course_id]="course_id" [assignment]="assignment" [submission]="submission"
+                                class="card-body py-2 pl-1 list-group list-group-flush" 
+                                id="a-body-{{assignment._id}}" 
+                                [ngbCollapse]="assignment.isCollapsed">
+          </app-assignment-body>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Expand/Collapse -->
+<ng-template #expand_collapse>
+  <div class="ml-auto"><small>
+    <span *ngIf="!allCollapsed()"(click)="collapseAll()" role="button">collapse all</span>
+  </small></div>
+</ng-template>
+
+<ng-template #spinner>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border spinner-border-large" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

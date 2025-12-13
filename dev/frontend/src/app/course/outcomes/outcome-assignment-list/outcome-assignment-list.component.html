@@ -1,0 +1,20 @@
+<ul class="list-group list-group-flush">
+    <li *ngFor="let assessment of assessments" class="list-group-item">
+        <div class="row">
+            <div class="col-score d-flex align-items-center">
+                <app-rubric-badge [points]="assessment.points"></app-rubric-badge>
+            </div>
+            <div class="col">
+                <div class="flex-column flex-truncate">
+                    <small>{{ assessment.dueAt | date:'M/d' }}</small>
+                    <div>
+                        <div role="button" (click)="assignmentModalService.openAssignment(student_id, course_id, assessment.assignment_id)" class="text-link">{{ assessment.name }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-score"></div>
+            <div class="col small" [innerHTML]="assessment.comments"></div>
+        </div>
+    </li>
+</ul>

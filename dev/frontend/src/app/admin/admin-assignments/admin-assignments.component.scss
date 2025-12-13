@@ -1,0 +1,48 @@
+$col-width: 150px;
+@import "teacher-table";
+
+.courses-th {
+    text-align: center;
+    min-width: 600px !important;
+    max-width: none !important;
+}
+
+.courses-td {
+    min-width: 600px;
+    max-width: none !important;
+}
+
+.loading {
+    max-width: 50px !important;
+}
+
+.loading .rotated-header-container {
+    max-width: 50px !important;
+}
+
+.loading .rotated-header-content {
+    left: 0px;
+}
+
+.rotated-header-container {
+    border-top: 0;
+}
+
+tr.grade-average td {
+    background-color: #eef3fd !important;
+    border: 1px solid #c1cfe9 !important;
+}
+
+tr.grade-average td {
+   position: sticky;
+   z-index: 2;
+   top: 150px; 
+}
+
+tr.grade-average td:first-child {
+    z-index: 5 !important;
+}
+
+.bi-pause-circle::before {
+   transform: rotate(90deg);
+}

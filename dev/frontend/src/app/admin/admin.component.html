@@ -1,0 +1,107 @@
+<app-page-header [title]="'Admin Dashboard'"></app-page-header>
+
+<div *ngIf="loading_grade_list" class="my-2">
+    <div class="spinner-border" role="status"></div> Loading student lists...
+</div>
+
+<div *ngIf="!loading_grade_list" class="filter">
+
+    <div *ngIf="!loading_grade_list && grade_list.length > 0" class="d-inline-block pr-3 pb-3" ngbDropdown>
+        <span class="h5">Grade: </span>
+        <button class="btn btn-outline-dark" id="gradeDropdown" ngbDropdownToggle>{{ current_grade ? current_grade : 'Select grade...' }}</button>
+        <div ngbDropdownMenu aria-labelledby="gradeDropdown">
+            <div *ngFor="let grade of grade_list | sortBy:'asc':'grade'">
+                <button ngbDropdownItem (click)="selectGrade(grade)">
+                    {{ grade }}
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="grade_list.length > 0" class="d-inline-block pr-3" ngbDropdown>
+        <span class="h5">per page: </span>
+        <button class="btn btn-outline-dark" id="numberDropdown" ngbDropdownToggle>{{ number ? number : 'all' }}</button>
+        <div ngbDropdownMenu aria-labelledby="numberDropdown">
+            <ng-container *ngFor="let num of [25, 50, 100, 200]">
+                <button ngbDropdownItem (click)="selectNumber(num)">
+                    {{ num }}
+                </button>
+            </ng-container>
+            <button ngbDropdownItem (click)="selectNumber(null)">
+                all
+            </button>
+        </div>
+    </div>
+
+    <span class="h5">dates: </span>
+    <div *ngIf="terms && current_term; else showTerms" class="d-inline-block pr-3" ngbDropdown>
+        <button class="btn btn-outline-dark" id="termDropdown" ngbDropdownToggle>{{ current_term.name }}</button>
+        <div ngbDropdownMenu aria-labelledby="termDropdown">
+            <ng-container *ngFor="let term of terms">
+                <button ngbDropdownItem (click)="selectTerm(term)">
+                    TERM: {{ term.name }}
+                </button>
+            </ng-container>
+            <button ngbDropdownItem (click)="selectCustomDates(true)">
+                CUSTOM DATES
+            </button>
+        </div>
+    </div>
+    
+    <ng-template #showTerms>
+        <button class="btn btn-outline-dark" (click)="selectCustomDates(false)">
+            Show terms
+        </button>
+    </ng-template>
+
+    <form *ngIf="show_custom_dates" class="form-inline">
+        <div class="form-group">
+          <div class="input-group mr-2">
+            
+            <input class="form-control" placeholder="start date"
+                   name="dpStart" (dateSelect)="onDateSelect('start', $event)" ngbDatepicker #dStart="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dStart.toggle()" type="button"><icon-calendar></icon-calendar></button>
+            </div>
+          </div>
+          <div class="input-group">
+            <input class="form-control" placeholder="end date"
+                   name="dpEnd" (dateSelect)="onDateSelect('end', $event)" ngbDatepicker #dEnd="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="dEnd.toggle()" type="button"><icon-calendar></icon-calendar></button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="bad_dates" class="text-danger pt=2">
+            Please select an end date after your start date.
+        </div>
+    </form>
+
+</div>
+
+<nav *ngIf="filtered_students$ | async;" class="nav nav-pills flex-column flex-sm-row my-2 sticky-left">
+            
+    <!-- Assignments -->
+    <li class="nav-item">
+        <a class="flex-sm text-sm-center nav-link" 
+            [routerLink]="['assignments']"
+            routerLinkActive="active">
+            Assignments</a>
+    </li>
+    <!-- Ouctomes -->
+    <li class="nav-item">
+        <a class="flex-sm text-sm-center nav-link" 
+            [routerLink]="['outcomes']"
+            routerLinkActive="active">
+            Outcomes</a>
+    </li>
+
+</nav>
+
+<div class="admin-content">
+    <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="(filtered_students$ | async) && !(listUpdating$ | async)">
+    <app-admin-pagination [pages]="pages" [page]="page"></app-admin-pagination>
+</div>

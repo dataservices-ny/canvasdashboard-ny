@@ -1,0 +1,107 @@
+<div *ngIf="course$ | async as course" class="card mb-3">
+    
+    <div class="card-header">
+        
+        <h6 class="font-weight-bold text-link"><a [routerLink]="['/','course', course.course_id, 'student', student_id]">{{ course.course_name }}</a></h6>
+        
+        <div *ngFor="let a of announcements">
+            <div><a href="{{a.htmlUrl}}" target="_blank">Announcement: {{a.name}}</a></div>
+            <div [innerHtml]="a.description"></div>
+        </div>
+
+    </div> 
+    
+    <div class="container mx-0">
+
+        <div *ngIf="loaded; else spinner">
+
+            <div *ngIf="!empty; else emptyMessage" class="row px-3">
+                
+                <div class="col-sm px-0">
+                    <div class="card border-0">
+                        <div class="card-body px-2">
+                            <div class="mb-1 text-truncate"><strong>UPCOMING</strong></div>
+                            <div *ngIf="upcoming.length == 0">No upcoming activity.</div>
+                            <div *ngFor="let s of upcoming | slice:0:5"  role="button" class="d-flex flex-column mb-2">
+                                <div *ngIf="isSubmission(s); else activity" (click)="assignmentModalService.openAssignment(student_id, course.course_id, s._id)">
+                                    <div class="text-muted"><small>{{ (s.dueAt | date:'M/d') }}</small></div>
+                                    <div #refEl class="text-truncate mr-1" [ngbTooltip]="course.assignments[s._id].name" [disableTooltip]="noTooltip(refEl)"><strong>{{ course.assignments[s._id].name }}</strong></div>
+                                </div>
+                                <ng-template #activity>
+                                    <div (click)="activityModalService.openActivity(course.course_id, student_id, s._id)">
+                                        <div class="text-muted"><small>{{ (s.date | date:'M/d') }}</small></div>
+                                        <div #refEl class="text-truncate mr-1" [ngbTooltip]="s.name" [disableTooltip]="noTooltip(refEl)"><strong>{{ s.name }}</strong></div>
+                                    </div>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm px-0">
+                    <div class="card border-0">
+                        <div class="card-body px-2">
+                            <div class="mb-1 text-truncate text-success"><strong>RECENT FEEDBACK</strong></div>
+                            <div *ngIf="feedback.length == 0">No recent feedback.</div>
+                            <div *ngFor="let submission of feedback | slice:0:5" (click)="assignmentModalService.openAssignment(student_id, course.course_id, submission._id)" role="button" class="d-flex align-items-center mb-2">
+                                <div class="icon icon-small pr-2">
+                                    <div *ngIf="submission.complete == true">
+                                        <icon-circle-check class="text-success" placement="top" tooltipClass="tooltip" ngbTooltip="Complete"></icon-circle-check>
+                                    </div>
+                                    <div *ngIf="submission.complete == null">
+                                        <icon-circle class="text-muted" placement="top" tooltipClass="tooltip" ngbTooltip="No grade"></icon-circle>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column flex-truncate">
+                                    <div *ngIf="submission.dueAt"><small>{{ (submission.dueAt | date:'M/d') }}</small></div>
+                                    <div #refEl class="text-truncate mr-1" [ngbTooltip]="course.assignments[submission._id].name" [disableTooltip]="noTooltip(refEl)"><strong>{{ course.assignments[submission._id].name }}</strong></div>
+                                </div>
+                                <div *ngIf="assignmentsService.letter_number(course.assignments[submission._id], submission) as grade" class="badge badge-secondary badge-grade px-1 py-1 mr-1">{{ grade }}</div>
+                                <div *ngIf="submission.rubric" class="icon icon-small mr-1 text-secondary"><icon-rubric placement="top" tooltipClass="tooltip" ngbTooltip="Rubric Grade"></icon-rubric></div>
+                                <div *ngIf="submission.comments.length > 0" class="icon icon-small mr-1 text-secondary"><icon-comment placement="top" tooltipClass="tooltip" ngbTooltip="Comments"></icon-comment></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm px-0">
+                    <div class="card border-0">
+                        <div class="card-body px-2 text-danger">
+                            <div class="mb-1 text-truncat"><strong>MISSING/INCOMPLETE</strong></div>
+                            <div *ngIf="missing_or_incomplete.length == 0">No missing assignments.</div>
+                            <div *ngFor="let submission of missing_or_incomplete"  role="button" (click)="assignmentModalService.openAssignment(student_id, course.course_id, submission._id)" class="d-flex align-items-center mb-2">
+                                <div *ngIf="submission.missing == true" class="icon icon-small pr-2">
+                                    <icon-circle-x class="text-danger" placement="top" tooltipClass="tooltip" ngbTooltip="Missing"></icon-circle-x>
+                                </div>
+                                <div *ngIf="submission.missing == false" class="icon icon-small pr-2">
+                                    <icon-circle-x class="text-danger" placement="top" tooltipClass="tooltip" ngbTooltip="Incomplete"></icon-circle-x>
+                                </div>                                
+                                <div class="d-flex flex-column flex-truncate">
+                                    <div *ngIf="submission.dueAt"><small>{{ (submission.dueAt | date:'M/d') }}</small></div>
+                                    <div #refEl class="text-truncate mr-1" [ngbTooltip]="course.assignments[submission._id].name" [disableTooltip]="noTooltip(refEl)"><strong>{{ course.assignments[submission._id].name }}</strong></div>
+                                </div>
+                                <div *ngIf="assignmentsService.letter_number(course.assignments[submission._id], submission) as grade" class="badge badge-secondary badge-grade px-1 py-1 mr-1">{{ grade }}</div>
+                                <div *ngIf="submission.rubric" class="icon icon-small mr-1 text-secondary"><icon-rubric placement="top" tooltipClass="tooltip" ngbTooltip="Rubric Grade"></icon-rubric></div>
+                                <div *ngIf="submission.comments.length > 0" class="icon icon-small mr-1 text-secondary"><icon-comment placement="top" tooltipClass="tooltip" ngbTooltip="Comments"></icon-comment></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center my-2">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>
+
+<ng-template #emptyMessage>
+    <div class="text-center my-2">
+        No assignments or upcoming activities.
+    </div>
+</ng-template>

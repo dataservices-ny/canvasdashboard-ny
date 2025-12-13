@@ -1,0 +1,51 @@
+<div *ngIf="isCollapsed" class="mb-3 text-info d-inline-flex align-items-center"
+     role="button" (click)="isCollapsed = !isCollapsed"
+     [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+    <icon-key class="icon icon-small mr-1"></icon-key>
+    show key
+</div>
+
+<div *ngIf="!isCollapsed" class="card mx-0 mb-3">
+    <div class="card-header d-inline-flex align-items-center">
+        <icon-key class="icon icon-small mr-1"></icon-key>
+        Key
+        <div role="button" class="small ml-auto text-info"
+             (click)="isCollapsed = !isCollapsed"
+             [attr.aria-expanded]="!isCollapsed" aria-controls="keyBody">
+            hide key
+        </div>
+    </div>
+    <div id="keyBody" [ngbCollapse]="isCollapsed" class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <div class="row align-self-center text-success mb-3">
+                        <span class="h3 pr-2"><icon-circle-check></icon-circle-check></span>Complete
+                    </div>
+                    <div class="row align-self-center text-danger mb-3">
+                        <span class="h3 pr-2"><icon-circle-x></icon-circle-x></span>Incomplete or missing
+                    </div>
+                    <div class="row align-self-center text-secondary mb-3">
+                        <span class="h3 pr-2"><icon-comment class="icon icon-small"></icon-comment></span>Comments
+                    </div>
+                    <div class="row align-self-center text-secondary mb-3">
+                        <span class="h3 pr-2"><icon-rubric class="icon icon-small"></icon-rubric></span>Rubric
+                    </div>
+                    <div *ngIf="has_number_letter_grades" class="row align-self-center text-secondary mb-3">
+                        <span class="badge badge-secondary mt-1 pt-1 mr-1">88</span>
+                        <span class="badge badge-secondary mt-1 pt-1 mr-2">B+</span>
+                        Number or letter grade
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="row">
+                        <u>Rubric Ratings</u>
+                    </div>
+                    <app-rubric-key></app-rubric-key>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="d-flex {{sidebarService.sidebar_toggle_class}}" id="wrapper">
+    
+    <div *ngIf="!sidebarService.lti" class="bg-dark border-right text-white" id="sidebar-wrapper">
+        <div class="nav-container">
+            <app-nav></app-nav>
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

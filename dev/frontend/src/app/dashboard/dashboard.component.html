@@ -1,0 +1,15 @@
+<div *ngIf="student$ | async as student; else spinner">
+  
+  <app-page-header [title]="'Feedback Dashboard'" [subtitle]="student.name"></app-page-header>
+  
+  <app-course-card *ngFor="let course of student.courses | keyvalue" [course_info]="course.value" [student_id]="student.id"></app-course-card>
+    
+</div>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border spinner-border-large" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+</ng-template>

@@ -1,0 +1,42 @@
+<div *ngIf="course$ | async as course" class="d-flex flex-column align-items-start sticky-left gradebook-header" [style.z-index]=5>
+    <div class="sticky-left pl-2 w-100">
+        <app-page-header *ngIf="course.section_name" [title]="course.course_name + ' - ' + course.section_name"></app-page-header>
+        <app-page-header *ngIf="!course.section_name" [title]="course.course_name"></app-page-header>
+    </div>
+
+    <div *ngIf="(router.url.includes('outcomes') && course.outcomes && course.assignments) || (router.url.includes('assignment') && course.assignments)" class="pl-2 w-100">
+        <app-data-filter [assignments_groups]="course.assignments_groups" [periods]="course.periods"></app-data-filter>
+    </div>
+
+    <nav class="nav nav-pills flex-column flex-sm-row mb-4">
+        <li class="nav-item">
+            <a class="flex-sm text-sm-center nav-link" 
+                [routerLink]="['assignment-gradebook']"
+                routerLinkActive="active">
+                Gradebook</a>
+        </li>
+        <li class="nav-item">
+            <a class="flex-sm text-sm-center nav-link"
+            [routerLink]="['outcomes-gradebook']"
+            routerLinkActive="active">
+            Outcomes Gradebook</a>
+        </li>
+        <li class="nav-item">
+            <a class="flex-sm text-sm-center nav-link"
+            [routerLink]="['student', course.sections[current_section].students[0].id]"
+            routerLinkActive="active">
+            Student View</a>
+        </li>
+    </nav>
+
+    <div ngbDropdown class="d-inline-block mb-3 pl-3">
+        <span class="h6">Section: </span>
+        <button class="btn btn-outline-dark" id="sectionDropdown" ngbDropdownToggle>{{ (course$ | async).sections[current_section].section_name }}</button>
+        <div ngbDropdownMenu aria-labelledby="sectionDropdown">
+            <button *ngFor="let section of course.sections | keyvalue | sortBy:'asc':'value.section_name'" ngbDropdownItem (click)="sectionService.set(section.key)">{{ section.value.section_name }}</button>
+        </div>
+    </div>
+
+</div>
+
+<router-outlet></router-outlet>

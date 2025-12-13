@@ -1,0 +1,39 @@
+@use "sass:color";
+@import "variables";
+
+.nav {
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    color: $body-color;
+}
+
+.nav-link.active {
+    color: $body-color !important;
+}
+
+.nav-link:not(.active) {
+    color: color.scale($body-color, $lightness: 30%);
+}
+
+.course-header,
+.course-content {
+    max-width: 800px;
+}
+
+.dropdown-menu {      
+    height: 400px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+#studentDropdown {
+    border-radius: 0;
+    width: 300px;
+    text-align: left;
+}
+
+.student-increment-arrow {
+    margin-bottom: 0rem;
+}

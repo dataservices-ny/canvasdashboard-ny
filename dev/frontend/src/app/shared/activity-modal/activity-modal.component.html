@@ -1,0 +1,15 @@
+<div class="modal-header card-title mb-0">
+    <div class="d-flex align-items-center w-100">
+        <div class="d-flex flex-column flex-truncate">
+            <div><small>{{ (activity.date | date:'M/d') }}</small></div>
+            <div>{{activity.name}}</div>
+        </div>
+        <icon-x class="icon ml-auto" role="button" (click)="modal.dismiss()"></icon-x>
+    </div>
+</div>
+
+<div class="modal-body py-2 list-group list-group-flush small">
+
+    <app-activity-body [activity]="activity" class="card-body py-2 pl-1 list-group list-group-flush"></app-activity-body>
+
+</div>
