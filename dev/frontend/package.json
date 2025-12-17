@@ -7,7 +7,7 @@
     "build": "ng build --build-optimizer=false",
     "prebuild": "rm -rf ../static && rm -rf ../templates/index.html",
     "postbuild": "mkdir ../static && mkdir ../static/img && mv ./dist/*.js ./dist/*.js.map ../static && mv ./dist/static/img/* ../static/img && mv ./dist/index.html ../templates",
-    "buildprod": "ng build --outputPath=dist-ny --configuration=production-ny && ng build --outputPath=dist-sp --configuration=production-sp && ng build --outputPath=dist-sv --configuration=production-sv && ng build --outputPath=dist-sz --configuration=production-sz",
+    "buildprod": "ng build --outputPath=dist-ny --configuration=production-ny",
     "postbuildprod": "../build-servers.sh",
     "test": "ng test",
     "lint": "ng lint",
