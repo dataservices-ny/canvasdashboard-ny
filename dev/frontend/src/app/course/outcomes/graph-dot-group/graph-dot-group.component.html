@@ -1,4 +1,5 @@
-<div *ngFor="let dot of dots" class="dot" 
+<div *ngFor="let dot of dots" 
+     [class]="dot.icon"
      role="button"
      (click)="assignmentModalService.openAssignment(student_id, course_id, dot.assessment.assignment_id)"
      [ngbTooltip]="tooltip"

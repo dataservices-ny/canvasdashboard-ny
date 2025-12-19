@@ -23,3 +23,15 @@
     [ ] course/teacher/outcomes-gradebook
     [ ] course/outcomes/outcome-assignment-list
     [ ] course/outcomes/graph-dot-group
+
+
+
+
+
+CHANGE LOG
+* dev/frontend/src/app/core/models/dot.ts
+    * added `icon: string property`
+* dev/frontend/src/app/course/outcomes/graph-dot-group/graph-dot-group.component.scss
+    * added second class for `.star` icon
+* dev/frontend/src/app/course/outcomes/graph-dot-group/graph-dot-group.component.html
+    * made `class` a varialbe to store `dot` or `star`
