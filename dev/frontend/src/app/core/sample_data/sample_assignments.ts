@@ -11,6 +11,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Syllabus and Slack Parental Consent',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '1698',
       '1781',
@@ -58,6 +59,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Bring a water sample from your house and draw a particle model of it.',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '899',
       '6173',
@@ -105,6 +107,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Reading "Matter is Made of Atoms"',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '149',
       '143',
@@ -152,6 +155,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Call 311 and order a DEP Lead in Drinking Water Test Kit',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '855',
       '5701',
@@ -199,6 +203,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Particle Models, Solutions, and Concentration',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '143',
       '1458',
@@ -246,6 +251,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Contact your 5th Grade Teacher',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '1020',
       '6733',
@@ -293,6 +299,7 @@ export const sample_assignments: Assignments = {
     name: 'Investigation: Solutions, Concentration, and Conductivity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       '5171_2499': {
         description: 'P4. Scientific Explanations',
@@ -529,6 +536,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Sticky Tape Analysis #1',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '6173',
       '1114',
@@ -576,6 +584,7 @@ export const sample_assignments: Assignments = {
     name: 'Concept Check: Particle Model of Matter, Solutions, and Concentration',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _1223: {
         description: 'P5. Scientific Models',
@@ -681,6 +690,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Sticky Tape Investigation Analysis #2',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '855',
       '1458',
@@ -775,6 +785,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Submit Corrections for the Solutions and Concentration Concept Check',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '4406',
       '432',
@@ -809,6 +820,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Reading - The Structure of Matter',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '1114',
       '789',
@@ -856,6 +868,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Sticky Tape Video Demonstration ',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3559: {
         description: 'C1. Particle Model of Matter',
@@ -933,6 +946,7 @@ export const sample_assignments: Assignments = {
     name: 'Sticky Tape Investigation',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _2841: {
         description: 'P5. Scientific Models',
@@ -1094,6 +1108,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Conductors and Insulators Reading and Charged Particle Model Practice Problems',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '432',
       '789',
@@ -1141,6 +1156,7 @@ export const sample_assignments: Assignments = {
     name: 'Assessment: Charged Particle Model Concept Check',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _1998: {
         description: 'P5. Scientific Models',
@@ -1246,6 +1262,7 @@ export const sample_assignments: Assignments = {
     name: 'Charged Particle Model Concept Check Question || Gia | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1290,6 +1307,7 @@ export const sample_assignments: Assignments = {
     name: 'Question on the Charged Particle Model Concept Check || Spencer | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1334,6 +1352,7 @@ export const sample_assignments: Assignments = {
     name: 'Charged Particle Model Concept Check || Lucia | P4. Scientific Explanations',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _9148: {
         description: 'outcome.title',
@@ -1378,6 +1397,7 @@ export const sample_assignments: Assignments = {
     name: 'Asked some good conceptual questions on the Charged Particle Model Concept Check || Kiki | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1422,6 +1442,7 @@ export const sample_assignments: Assignments = {
     name: 'Asked some good conceptual questions on the Charged Particle Model Concept Check || Thandi | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1466,6 +1487,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Water Sampling',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '855',
       '5475',
@@ -1513,6 +1535,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: What\'s in NYC\'s Tap Water?',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '147',
       '6176',
@@ -1654,6 +1677,7 @@ export const sample_assignments: Assignments = {
     name: 'Water Test Station Competition',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     users: [
       '141',
       '432',
@@ -1701,6 +1725,7 @@ export const sample_assignments: Assignments = {
     name: 'Good curiosity question during Dr. Lieberman\'s Talk || Quynh | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1745,6 +1770,7 @@ export const sample_assignments: Assignments = {
     name: 'Great critical/curiosity question about Dr. Lieberman\'s paper during her talk. || Camilla | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -1789,6 +1815,7 @@ export const sample_assignments: Assignments = {
     name: 'Great critical question about cost during Dr. Lieberman\'s talk. || Alexandra | P1. Questioning and Curiosity',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'Some Major Thing',
     rubric: {
       _3253: {
         description: 'outcome.title',
@@ -2273,6 +2300,7 @@ export const sample_assignments: Assignments = {
     name: 'Term 1 Reflection Email',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1020',
       '1080',
@@ -2320,6 +2348,7 @@ export const sample_assignments: Assignments = {
     name: 'Complete The Process of Dissolving Simulations',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '4219',
       '149',
@@ -2660,6 +2689,7 @@ export const sample_assignments: Assignments = {
     name: 'Complete your preparations for our lesson plan.',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '789',
       '6586',
@@ -2901,6 +2931,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Complete NYC Water Quality Project Proposal Form',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '855',
       '141',
@@ -2948,6 +2979,7 @@ export const sample_assignments: Assignments = {
     name: 'HW DUE 12/2 - Make 30 minutes of progress on your project.',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '899',
       '432',
@@ -3169,6 +3201,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Fukushima Butterflies Data Collection and a Video',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '4321',
       '6733',
@@ -3349,6 +3382,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: What is DNA and How Does it Work Video',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '149',
       '855',
@@ -4001,6 +4035,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Evolution Stories',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1664',
       '4222',
@@ -4296,6 +4331,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Draft Introduction of your NYC Tap Water Quality Lab Report',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '432',
       '141',
@@ -4343,6 +4379,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Work on your NYC Tap Water Quality Lab Report',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '4222',
       '6173',
@@ -4523,6 +4560,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Describing Motion with Position vs. Time Graphs',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '432',
       '4222',
@@ -4570,6 +4608,7 @@ export const sample_assignments: Assignments = {
     name: 'Submit Motion Detector Investigation Google Doc',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1020',
       '855',
@@ -4601,6 +4640,7 @@ export const sample_assignments: Assignments = {
     name: 'HW: Wave Model Practice Problems',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '6733',
       '434',
@@ -4809,6 +4849,7 @@ export const sample_assignments: Assignments = {
     name: 'Guitar Simulator Investigation - Share and Submit Notes Doc',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '143',
       '1781',
@@ -4856,6 +4897,7 @@ export const sample_assignments: Assignments = {
     name: 'Guitar Simulator Investigation - Share and Submit Notes #2',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '143',
       '1698',
@@ -5092,6 +5134,7 @@ export const sample_assignments: Assignments = {
     name: 'Sound Modeling Poster Draft',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '789',
       '1654',
@@ -5272,6 +5315,7 @@ export const sample_assignments: Assignments = {
     name: 'Cell Phone Communication Project Part 1',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1402',
       '149',
@@ -5319,6 +5363,7 @@ export const sample_assignments: Assignments = {
     name: 'Cell Phone Communication Project Part 2',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '4222',
       '899',
@@ -5457,6 +5502,7 @@ export const sample_assignments: Assignments = {
     name: 'Digital Encoding of Sound and Text Slides',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '147',
       '6173',
@@ -5504,6 +5550,7 @@ export const sample_assignments: Assignments = {
     name: 'Electromagnetic Spectrum Reading Notes  (pages 1-5)',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '4321',
       '4222',
@@ -5551,6 +5598,7 @@ export const sample_assignments: Assignments = {
     name: 'Electromagnetic Spectrum Reading Notes  (pages 6-12)',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '5475',
       '1020',
@@ -5598,6 +5646,7 @@ export const sample_assignments: Assignments = {
     name: 'End of Year Progress Email',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1654',
       '434',
@@ -5645,6 +5694,7 @@ export const sample_assignments: Assignments = {
     name: 'Cell Phone Communications Project Part 4',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '6173',
       '1654',
@@ -5692,6 +5742,7 @@ export const sample_assignments: Assignments = {
     name: 'Cell Phone Communications Project Part 5',
     published: true,
     pointsPossible: 0,
+    assignment_group: 'anything but m*ajor',
     users: [
       '1458',
       '147',
