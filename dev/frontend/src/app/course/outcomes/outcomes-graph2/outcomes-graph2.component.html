@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="col d-flex d-inline-flex badge-row pt-1 pb-3" #scroller>
-
+                    
                     <div *ngFor="let assessment of outcome.value.assessments | sortBy:'asc':'dueAt'; index as i; count as count;" 
                         role="button"
                         (click)="assignmentModalService.openAssignment(student_id, course_id, assessment.assignment_id)"
@@ -37,8 +37,8 @@
                         container="body"
                         tooltipClass="points-tooltip"
                         >
-                        <app-rubric-badge *ngIf="i < count - 3" [points]="assessment.points" [skinny]="true"></app-rubric-badge>
-                        <app-rubric-badge *ngIf="i > count - 4" [points]="assessment.points"></app-rubric-badge>
+                        <app-rubric-badge *ngIf="isMajor(assessment)" [points]="assessment.points"></app-rubric-badge>
+                        <app-rubric-badge *ngIf="!isMajor(assessment)" [points]="assessment.points" [skinny]="true"></app-rubric-badge>
 
                         <ng-template #tooltip>
                             <app-outcome-points-tooltip [assessment]="assessment"></app-outcome-points-tooltip>
