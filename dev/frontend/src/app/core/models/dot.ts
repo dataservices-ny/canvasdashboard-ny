@@ -15,5 +15,5 @@ export interface Dot {
         name: string,
         date: string
     }
-    icon: string
+    icon: string // 'dot' or 'star'
 }

@@ -35,3 +35,8 @@ CHANGE LOG
     * added second class for `.star` icon
 * dev/frontend/src/app/course/outcomes/graph-dot-group/graph-dot-group.component.html
     * made `class` a varialbe to store `dot` or `star`
+* dev/frontend/src/app/course/outcomes/graph-dot-group/graph-dot-group.component.ts
+    * added `icon` property to `dot` object
+    * used dataService to get assignment_group
+    * added `icon: star` to assignments with assignment_groups containing `major`
+    * made all `star` assignemnts `size:30` and `opacity: 1`

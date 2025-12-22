@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { skipWhile, take } from 'rxjs/operators';
 import { Dot } from 'src/app/core/models/dot';
 import { Assessment } from 'src/app/core/models/outcomes';
+import { DataService } from 'src/app/core/services/data.service';
 import { RubricService } from 'src/app/core/services/rubric.service';
 import { AssignmentModalService } from 'src/app/shared/assignment-modal/assignment-modal.service';
 
@@ -22,7 +24,8 @@ export class GraphDotGroupComponent implements OnInit {
   constructor(
     private zone: NgZone,
     public rubricService: RubricService,
-    public assignmentModalService: AssignmentModalService
+    public assignmentModalService: AssignmentModalService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
@@ -67,8 +70,22 @@ export class GraphDotGroupComponent implements OnInit {
           left: -this.first_dot_size/2,
           top: -this.first_dot_size/2,
           offset_radius: 0,
-          assessment: assessment
+          assessment: assessment,
+          icon: 'dot'
         }
+
+        // request the assignment (DataService returns a BehaviorSubject and will use cached data when available)
+        this.dataService.getAssignment(this.course_id, this.student_id, String(assessment.assignment_id))
+          .pipe(skipWhile(a => a == null), take(1))
+          .subscribe(assignment => {
+            // attach assignment_group to the dot tooltip (or create a dot.assignment_group field)
+            if (assignment.assignment_group != null && assignment.assignment_group.toLowerCase().includes('major')) {
+              dot.icon = 'star';
+              dot.size = 30;
+              dot.opacity = 1;
+            }
+          });
+
         if(i == 0){
           this.first_dot_size = dot.size;
         }
