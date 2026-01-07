@@ -7,7 +7,7 @@
         --> the outcome-dot-group uses the dot.ts model 
         --> CHANGE! I added a property to dot.ts: icon: string to hold "dot" or "star"
     [x] course/outcomes/graph-dot-group
-    [ ] course/outcomes/outcomes-graph2
+    [x] course/outcomes/outcomes-graph2
     [ ] ? course/outcomes/outcomes-list
     [ ] course/outcomes/outcomes-key
     [ ] course/outcomes/outcomes-graph-key
@@ -27,9 +27,10 @@
 
 ## 12/22
 * Got `dot-graph-group` working with star icons
++ Got `outcomes-graph-2` working with `skinny` badges for non-major assignments
 
-
-
+## 1/7
+* Updated deploy-test.sh and deploy.sh to remove deployment to SP, SZ, and SV
 
 CHANGE LOG
 * dev/frontend/src/app/core/models/dot.ts
@@ -43,8 +44,8 @@ CHANGE LOG
     * used dataService to get assignment_group
     * added `icon: star` to assignments with assignment_groups containing `major`
     * made all `star` assignemnts `size:30` and `opacity: 1`
-
 ** dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
     * Changed logic for `skinny` badges to look for assignment_groups containing `major` instead of the most recent 3
 * dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.ts
     * added isMajor method that looks for assignment_group containing `major`
+* Updated deploy-test.sh and deploy.sh to remove deployment to SP, SZ, and SV

@@ -22,13 +22,4 @@ stop=${3:---stop-previous-version}
 gcloud app deploy ../build-nyc/app.yaml --project=canvas-dashboard-avenues-nyc --version=$version $promote $stop &
 P1=$!
 
-gcloud app deploy ../build-sp/app.yaml --project=canvas-dashboard-avenues-spb --version=$version $promote $stop &
-P2=$!
-
-gcloud app deploy ../build-sv/app.yaml --project=canvas-dashboard-avenues-sv --version=$version $promote $stop &
-P3=$!
-
-gcloud app deploy ../build-sz/app.yaml --project=canvas-dashboard-avenues-sz --version=$version $promote $stop &
-P4=$!
-
-wait $P1 $P2 $P3 $P4
+wait $P1 && echo "Deployment to live successful" || echo "Deployment to live failed"
