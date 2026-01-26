@@ -8,7 +8,6 @@
         --> CHANGE! I added a property to dot.ts: icon: string to hold "dot" or "star"
     [x] course/outcomes/graph-dot-group
     [x] course/outcomes/outcomes-graph2
-    [ ] ? course/outcomes/outcomes-list
     [x] course/outcomes/outcomes-key
     [x] course/outcomes/outcomes-graph-key
     [x] course/teacher/outcomes-gradebook
@@ -32,7 +31,12 @@
 ## 1/7
 * Updated deploy-test.sh and deploy.sh to remove deployment to SP, SZ, and SV
 
-CHANGE LOG
+## 1/26
+* Finished up changes to keys, outcome-graph2, and outcome-gradebook
+
+
+# CHANGE LOG
+
 * dev/frontend/src/app/core/models/dot.ts
     * added `icon: string property`
 * dev/frontend/src/app/course/outcomes/graph-dot-group/graph-dot-group.component.scss
@@ -44,6 +48,7 @@ CHANGE LOG
     * used dataService to get assignment_group
     * added `icon: star` to assignments with assignment_groups containing `major`
     * made all `star` assignemnts `size:30` and `opacity: 1`
+
 * dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
     * Changed logic for `skinny` badges to look for assignment_groups containing `major` instead of the most recent 3
 * dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.ts
@@ -68,3 +73,8 @@ CHANGE LOG
 * dev/frontend/src/app/course/teacher/outcomes-gradebook/outcomes-gradebook.component.html
     * Updated gradebook view to show major assessments large and non-major assessements "skinny"
     * Updated gradebook view to ignore null rubric grades
+
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph.component.html
+    * Added border around outcome description to clear up the ui
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
+    * Added border around outcome description to clear up the ui
