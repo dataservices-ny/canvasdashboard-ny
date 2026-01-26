@@ -11,7 +11,7 @@
     [ ] ? course/outcomes/outcomes-list
     [x] course/outcomes/outcomes-key
     [x] course/outcomes/outcomes-graph-key
-    [ ] course/teacher/outcomes-gradebook
+    [x] course/teacher/outcomes-gradebook
     [ ] course/outcomes/outcome-assignment-list
     
 
@@ -44,8 +44,27 @@ CHANGE LOG
     * used dataService to get assignment_group
     * added `icon: star` to assignments with assignment_groups containing `major`
     * made all `star` assignemnts `size:30` and `opacity: 1`
-** dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
     * Changed logic for `skinny` badges to look for assignment_groups containing `major` instead of the most recent 3
 * dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.ts
     * added isMajor method that looks for assignment_group containing `major`
 * Updated deploy-test.sh and deploy.sh to remove deployment to SP, SZ, and SV
+
+* dev/frontend/tscnfig.json
+    * Added "types": [] to fix bug
+
+* dev/frontend/src/app/course/outcomes/outcomes-list/outcomes-list.component.html
+    * Added a border around the outcome description for clarity.
+
+* dev/frontend/src/app/core/services/rubric.service.ts
+    * Added isMajor() method
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.ts
+    * Removed isMajor() method as it is now imported from rubric.service.ts
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
+    * Updated call to isMajor() to call rubricService.isMajor()
+* dev/frontend/src/app/course/teacher/outcomes-gradebook/outcomes-gradebook.component.ts
+    * Imported rubric.service.ts to access isMajor()
+    * Added showMajor() and showMinor() methods to handle badge logic
+* dev/frontend/src/app/course/teacher/outcomes-gradebook/outcomes-gradebook.component.html
+    * Updated gradebook view to show major assessments large and non-major assessements "skinny"
+    * Updated gradebook view to ignore null rubric grades

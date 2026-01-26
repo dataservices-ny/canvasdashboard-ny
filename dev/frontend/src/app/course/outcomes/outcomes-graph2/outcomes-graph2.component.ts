@@ -146,13 +146,6 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
     })
   }
 
-  isMajor(assessment): boolean {
-    const assignment = this.assignments && this.assignments[assessment.assignment_id];
-    const group = assignment && assignment.assignment_group;
-    return !!group && group.toLowerCase().includes('major');
-  }
-
-
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }

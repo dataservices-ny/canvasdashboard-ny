@@ -34,7 +34,7 @@ import { CalendarIcon } from './icons/calendar.icon';
 
 let dev = [];
 
-let use_in_memory_data_service = true;
+let use_in_memory_data_service = false;
 
 if(use_in_memory_data_service){
   dev = [

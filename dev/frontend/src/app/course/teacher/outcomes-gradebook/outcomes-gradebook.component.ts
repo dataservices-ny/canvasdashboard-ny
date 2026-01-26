@@ -4,7 +4,8 @@ import { FilterService } from 'src/app/core/services/filter.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Course } from 'src/app/core/models/course';
 import { Observable, Subscription } from 'rxjs';
-import { Outcomes } from 'src/app/core/models/outcomes';
+import { Assessment, Outcomes } from 'src/app/core/models/outcomes';
+import { RubricService } from 'src/app/core/services/rubric.service';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { AssignmentModalService } from 'src/app/shared/assignment-modal/assignment-modal.service';
@@ -39,6 +40,7 @@ export class OutcomesGradebookComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dataService: DataService,
     public assignmentModalService: AssignmentModalService,
+    public rubricService: RubricService,
     public sectionService: SectionService,
     private filter: FilterService
   ) {  }
@@ -245,6 +247,18 @@ export class OutcomesGradebookComponent implements OnInit, OnDestroy {
         'max-width': width+'px'
       }
     }
+  }
+
+  shouldShowAssessment(index: number, count: number, assessment: Assessment): boolean {
+    return index + 1 > count - this.show_number && assessment.points != null;
+  }
+
+  majorBadge(index: number, count: number, assessment: Assessment): boolean {
+    return this.shouldShowAssessment(index, count, assessment) && this.rubricService.isMajor(assessment, this.assignments);
+  }
+
+  minorBadge(index: number, count: number, assessment: Assessment): boolean {
+    return this.shouldShowAssessment(index, count, assessment) && !this.rubricService.isMajor(assessment, this.assignments);
   }
 
 }
