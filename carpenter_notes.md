@@ -12,6 +12,7 @@
     [x] course/outcomes/outcomes-graph-key
     [x] course/teacher/outcomes-gradebook
     [ ] course/outcomes/outcome-assignment-list
+        * Need to fix sizing of borders, it is fine on localhost, but not on full dev server 127.0.0.1:9000 ???
     
 
 
