@@ -78,3 +78,18 @@
     * Added border around outcome description to clear up the ui
 * dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
     * Added border around outcome description to clear up the ui
+
+* dev/frontend/src/app/course/outcomes/outcome-assignment-list/outcome-assignment-list.component.html
+    * Added badge sizing for major/minor assessments
+* dev/frontend/src/app/course/outcomes/outcome-assignment-list/outcome-assignment-list.component.ts
+    * Imported Assignents to provide categories
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
+    * Added assignments to call to assignment-list component
+* dev/frontend/src/app/course/outcomes/outcomes-list/outcomes-list.component.html
+    * Added assignments to call to assignment-list component
+* dev/frontend/src/app/shared/rubric-badge/rubric-badge.component.html
+    * Added skinny badge with text
+* dev/frontend/src/app/shared/rubric-badge/rubric-badge.component.ts
+    * Added withText parameter
+* dev/frontend/src/app/shared/rubric-badge/rubric-badge.component.scss
+    * Style for skinnyb badge with text

@@ -1,2 +1,6 @@
-<div *ngIf="skinny" class="rubric-score rubric-score-skinny badge badge-rubric-{{rubricService.rubric_color(points)}} {{extra_class}} px-0">&nbsp;</div>
 <div *ngIf="!skinny" class="rubric-score badge badge-rubric-{{rubricService.rubric_color(points)}} {{extra_class}} px-0">{{ text ? text : 'na'}}</div>
+<div *ngIf="skinny && !withText" class="rubric-score rubric-score-skinny badge badge-rubric-{{rubricService.rubric_color(points)}} {{extra_class}} px-0">&nbsp;</div>
+<div *ngIf="skinny && withText" class="rubric-score-with-text {{rubricService.rubric_color(points)}}">
+    <div class="rubric-score rubric-score-skinny badge badge-rubric-{{rubricService.rubric_color(points)}} {{extra_class}} px-0">&nbsp;</div>
+    <span class="rubric-score-text">{{ text ? text : 'na'}}</span>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Assessment } from 'src/app/core/models/outcomes';
+import { Assignments } from 'src/app/core/models/assignments';
 import { RubricService } from 'src/app/core/services/rubric.service';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentModalService } from 'src/app/shared/assignment-modal/assignment-modal.service';
@@ -14,6 +15,7 @@ export class OutcomeAssignmentListComponent implements OnInit {
   @Input() assessments: Assessment[];
   @Input() course_id: string;
   @Input() student_id: string;
+  @Input() assignments: Assignments;
   
   constructor(
     public rubricService: RubricService,

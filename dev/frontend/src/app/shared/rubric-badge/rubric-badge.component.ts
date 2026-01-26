@@ -10,6 +10,7 @@ export class RubricBadgeComponent implements OnInit {
 
   @Input() points: number;
   @Input() skinny: boolean = false;
+  @Input() withText: boolean = false;
   @Input() extra_class: string = '';
   text: string;
   points_type: string = 'text'  // or 'points'

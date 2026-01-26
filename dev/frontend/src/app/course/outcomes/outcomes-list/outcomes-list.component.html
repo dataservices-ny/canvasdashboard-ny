@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="card-body py-1" id="o-body-{{outcome.key}}" [ngbCollapse]="outcomes_collapsed[outcome.key]">
-                    <div class="row d-flex d-inline-flex small p-2 border rounded" [innerHTML]="outcome.value.description"></div>
-                    <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments"></app-outcome-assignment-list>
+                    <div class="row d-flex d-inline-flex mx-1 p-2 small border round" [innerHTML]="outcome.value.description"></div>
+                    <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments" [assignments]="assignments"></app-outcome-assignment-list>
                 </div>
 
             </div>

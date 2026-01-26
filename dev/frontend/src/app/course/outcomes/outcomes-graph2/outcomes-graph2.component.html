@@ -51,7 +51,7 @@
             <div class="row card-body" 
                 id="o-body-{{outcome.key}}" [ngbCollapse]="outcomes_collapsed[outcome.key]">
                 <div class="row d-flex d-inline-flex border round mx-1 p-2 small" [innerHTML]="outcome.value.description"></div>
-                <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments"></app-outcome-assignment-list>
+                <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments" [assignments]="assignments"></app-outcome-assignment-list>
             </div>
             
         </div>

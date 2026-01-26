@@ -9,7 +9,39 @@
     width: 1rem;
 }
 
+.rubric-score-with-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.rubric-score-text {
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    border-radius: 0 0.2rem 0.2rem 0;
+    padding: 0 0.1rem 0 0.3rem;
+    line-height: 1.4rem;
+    margin-left: -0.4rem;
+    min-width: 20px;
+    max-width: 20px;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
 .admin-small {
     width: .75rem;
     height: 1.35rem;
+}
+
+.advanced {
+    color: #007bff;
+}
+.proficient {
+    color: #28a745;
+}
+.developing {
+    color: #ffc107;
+}
+.not-yet {
+    color: #dc3545;
 }
