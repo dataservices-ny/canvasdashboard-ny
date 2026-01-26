@@ -9,8 +9,8 @@
     [x] course/outcomes/graph-dot-group
     [x] course/outcomes/outcomes-graph2
     [ ] ? course/outcomes/outcomes-list
-    [ ] course/outcomes/outcomes-key
-    [ ] course/outcomes/outcomes-graph-key
+    [x] course/outcomes/outcomes-key
+    [x] course/outcomes/outcomes-graph-key
     [ ] course/teacher/outcomes-gradebook
     [ ] course/outcomes/outcome-assignment-list
     

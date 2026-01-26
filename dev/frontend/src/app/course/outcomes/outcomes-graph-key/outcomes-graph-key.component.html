@@ -19,17 +19,47 @@
         <div class="container">
 
             <div class="row mb-3">
-                <div class="col">
+                <div class="col-2">
                     <div class="row">
                         <div class="d-flex flex-row justify-content-center align-items-center">
-                            <div class="key-dot" [style.width]="'12px'" [style.height]="'12px'" [style.opacity]=".5"></div>
-                            <div class="key-dot" [style.width]="'13.7px'" [style.height]="'13.7px'" [style.opacity]=".57"></div>
-                            <div class="key-dot" [style.width]="'16px'" [style.height]="'16px'" [style.opacity]=".67"></div>
-                            <div class="key-dot" [style.width]="'19.2px'" [style.height]="'19.2px'" [style.opacity]=".8"></div>
-                            <div class="key-dot" [style.width]="'24px'" [style.height]="'24px'" [style.opacity]="1"></div>
-                            <div class="pl-2">More recent assessments are larger and darker</div>
+                            <div class="dot" [style.width]="'12px'" [style.height]="'12px'" [style.opacity]=".5"></div>
+                            <div class="dot" [style.width]="'13.7px'" [style.height]="'13.7px'" [style.opacity]=".57"></div>
+                            <div class="dot" [style.width]="'16px'" [style.height]="'16px'" [style.opacity]=".67"></div>
+                            <div class="dot" [style.width]="'19.2px'" [style.height]="'19.2px'" [style.opacity]=".8"></div>
+                            <div class="dot" [style.width]="'24px'" [style.height]="'24px'" [style.opacity]="1"></div>
                         </div>
                     </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="small pl-2">Dot size indicates the total points possible for an assessment. Larger dots represent assessments with more points possible, while smaller dots represent assessments with fewer points possible.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-1">
+                    <div class="row">
+                        <div class="dot" [style.width]="'24px'" [style.height]="'24px'" [style.opacity]="1"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="small pl-2">Circles show minor/formative assessments like short quizzes and class discussions. These assessments are more targetted and might not cover all of the skills in an outcome, but they help the teacher and student decide on next steps. Minor assessments are less impactful when determining the student's overall performance in an outcome.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-1">
+                    <div class="row">
+                        <div class="star" [style.width]="'24px'" [style.height]="'24px'" [style.opacity]="1"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="small pl-2">Stars show major summative assessments like final exams and projects. These assessments are more comprehensive and cover all of the skills in an outcome, providing a complete picture of the student's performance. Major assessments are more impactful when determining the student's overall performance in an outcome.</div>
+                    </div>  
                 </div>
             </div>
 

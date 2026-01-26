@@ -17,6 +17,42 @@
     </div>
     <div id="keyBody" [ngbCollapse]="isCollapsed" class="card-body">
         <div class="container">
+
+            <div class="row mb-3">
+                <div class="col-2">
+                    <div class="row mt-2">
+                        <div class="badge badge-rubric-advanced px-0 rubric-score rubric-score-skinny">&nbsp;</div>
+                        <div class="badge badge-rubric-proficient px-0 rubric-score rubric-score-skinny">&nbsp;</div>
+                        <div class="badge badge-rubric-developing px-0 rubric-score rubric-score-skinny">&nbsp;</div>
+                        <div class="badge badge-rubric-not-yet px-0 rubric-score rubric-score-skinny">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="pl-2 small"><strong>Small boxes</strong> show minor/formative assessments like short quizzes and class discussions. These assessments are more targetted and might not cover all of the skills in an outcome, but they help the teacher and student decide on next steps. Minor assessments are less impactful when determining the student's overall performance in an outcome.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-2">
+                    <div class="row mb-1 mt-2">
+                        <div class="badge badge-rubric-advanced px-0 rubric-score">A</div>
+                        <div class="badge badge-rubric-proficient px-0 rubric-score">P</div>
+                    </div>
+                    <div class="row">
+                        <div class="badge badge-rubric-developing px-0 rubric-score">D</div>
+                        <div class="badge badge-rubric-not-yet px-0 rubric-score">NY</div>
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="pl-2 small"><strong>Large boxes</strong> with letters show major summative assessments like final exams and projects. These assessments are more comprehensive and cover all of the skills in an outcome, providing a complete picture of the student's performance. Major assessments are more impactful when determining the student's overall performance in an outcome.</div>
+                    </div>  
+                </div>
+            </div>
+
             <div class="row px-3">
                 <app-rubric-key></app-rubric-key>
             </div>

@@ -1,3 +1,5 @@
+@import '../graph-dot-group/graph-dot-group.component.scss';
+
 .progress-key{
     height: 30px;
 }
@@ -7,8 +9,8 @@
     color: black !important;
 }
 
-.key-dot{
+.dot{
+    position: relative;
     background-color: #000;
-    border-radius: 50%;
     margin-right: .1rem;
 }
