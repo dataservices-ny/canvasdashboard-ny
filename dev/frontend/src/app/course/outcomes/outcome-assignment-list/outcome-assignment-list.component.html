@@ -2,8 +2,8 @@
     <li *ngFor="let assessment of assessments" class="list-group-item">
         <div class="row">
             <div class="col-score d-flex align-items-center">
-                <app-rubric-badge *ngIf="rubricService.isMajor(assessment, assignments)" [points]="assessment.points"></app-rubric-badge>
-                <div *ngIf="!rubricService.isMajor(assessment, assignments)">
+                <app-rubric-badge *ngIf="rubricService.isMajor(assignments && assignments[assessment.assignment_id])" [points]="assessment.points"></app-rubric-badge>
+                <div *ngIf="!rubricService.isMajor(assignments && assignments[assessment.assignment_id])">
                     <app-rubric-badge [points]="assessment.points" [skinny]="true" [withText]="true"></app-rubric-badge>
                 </div> 
             </div>

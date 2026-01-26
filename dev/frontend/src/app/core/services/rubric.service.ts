@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Assessment } from '../models/outcomes';
-import { Assignment, Assignments } from '../models/assignments';
+import { Assignment } from '../models/assignments';
 
 
 @Injectable({
@@ -18,8 +17,7 @@ export class RubricService {
     else return 'not-yet'
   }
 
-  isMajor(assessment: Assessment, assignments: Assignments): boolean {
-    const assignment = assignments && assignments[assessment.assignment_id];
+  isMajor(assignment: Assignment): boolean {
     const group = assignment && assignment.assignment_group;
     return !!group && group.toLowerCase().includes('major');
   }

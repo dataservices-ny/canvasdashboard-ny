@@ -254,11 +254,13 @@ export class OutcomesGradebookComponent implements OnInit, OnDestroy {
   }
 
   majorBadge(index: number, count: number, assessment: Assessment): boolean {
-    return this.shouldShowAssessment(index, count, assessment) && this.rubricService.isMajor(assessment, this.assignments);
+    const assignment = this.assignments && this.assignments[assessment.assignment_id];
+    return this.shouldShowAssessment(index, count, assessment) && this.rubricService.isMajor(assignment);
   }
 
   minorBadge(index: number, count: number, assessment: Assessment): boolean {
-    return this.shouldShowAssessment(index, count, assessment) && !this.rubricService.isMajor(assessment, this.assignments);
+    const assignment = this.assignments && this.assignments[assessment.assignment_id];
+    return this.shouldShowAssessment(index, count, assessment) && !this.rubricService.isMajor(assignment);
   }
 
 }

@@ -11,8 +11,8 @@
     [x] course/outcomes/outcomes-key
     [x] course/outcomes/outcomes-graph-key
     [x] course/teacher/outcomes-gradebook
-    [ ] course/outcomes/outcome-assignment-list
-        * Need to fix sizing of borders, it is fine on localhost, but not on full dev server 127.0.0.1:9000 ???
+    [x] course/outcomes/outcome-assignment-list
+
     
 
 
@@ -94,3 +94,16 @@
     * Added withText parameter
 * dev/frontend/src/app/shared/rubric-badge/rubric-badge.component.scss
     * Style for skinnyb badge with text
+
+* dev/frontend/src/app/core/services/rubric.service.ts
+    * Modified isMajor() method to accept a single Assignment
+* dev/frontend/src/app/course/outcomes/outcomes-list/outcomes-list.component.html
+    * Modified isMajor() method to use a single Assignment
+* dev/frontend/src/app/course/outcomes/outcomes-graph2/outcomes-graph2.component.html
+    * Modified isMajor() method to use a single Assignment
+* dev/frontend/src/app/course/teacher/outcomes-gradebook/outcomes-gradebook.component.ts
+    * Modified isMajor() method to use a single Assignment
+* dev/frontend/src/app/shared/rubric-component/rubric-component.component.html
+    * Added skinny badge with text
+* dev/frontend/src/app/shared/rubric-component/rubric-component.component.scss
+    * Fixed skinny badge with text font size

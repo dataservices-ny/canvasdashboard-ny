@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-score">
                 <div *ngIf="submission_rubric">
-                    <app-rubric-badge *ngIf="submission_rubric[row.key]" [points]="submission_rubric[row.key].points"></app-rubric-badge>
+                    <div *ngIf="submission_rubric[row.key]">
+                        <app-rubric-badge *ngIf="rubricService.isMajor(assignment)" [points]="submission_rubric[row.key].points"></app-rubric-badge>
+                        <app-rubric-badge *ngIf="!rubricService.isMajor(assignment)" [points]="submission_rubric[row.key].points" [skinny]="true" withText="true"></app-rubric-badge>
+                    </div>
                 </div>
             </div>
             <div class="col font-weight-bold text-truncate">{{ row.value.description }}</div>
