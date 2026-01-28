@@ -13,6 +13,10 @@
     [x] course/teacher/outcomes-gradebook
     [x] course/outcomes/outcome-assignment-list
 
+    [ ] Python update <-- requires testing
+
+    [ ] TODO: These changes should be conditional on courses having "major" assignments, else it should default to the old system
+
     
 
 
@@ -34,6 +38,7 @@
 
 ## 1/26
 * Finished up changes to keys, outcome-graph2, and outcome-gradebook
+
 
 
 # CHANGE LOG
@@ -107,3 +112,12 @@
     * Added skinny badge with text
 * dev/frontend/src/app/shared/rubric-component/rubric-component.component.scss
     * Fixed skinny badge with text font size
+
+* dev/app.yaml
+    * Updated to use most recent version of Python as 3.7 is deprecated.
+* dev/requirements.txt
+    * Updated requirements for new Python version compatibility
+* dev/api/secrets.py
+    * Updated for new Python version compatibility
+* dev/flask_session_patch/sessions.py
+    * Updated for new Python version compatibility

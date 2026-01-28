@@ -1,5 +1,5 @@
 import os
-from google.cloud import secretmanager_v1beta1 as secretmanager
+from google.cloud import secretmanager
 
 
 def get_secret(secret_id, version_id='latest'):
@@ -13,10 +13,14 @@ def get_secret(secret_id, version_id='latest'):
     
     # Build the resource name of the secret version.
     project_id = os.environ.get("GCP_PROJECT")
-    name = client.secret_version_path(project_id, secret_id, version_id)
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
 
     # Access the secret version.
-    response = client.access_secret_version(name)
+    try:
+        response = client.access_secret_version(request={"name": name})
+    except TypeError:
+        # Compatibility with older google-cloud-secret-manager clients.
+        response = client.access_secret_version(name)
 
     # Print the secret payload.
     #
