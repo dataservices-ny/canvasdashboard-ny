@@ -16,6 +16,7 @@ export class OutcomeAssignmentListComponent implements OnInit {
   @Input() course_id: string;
   @Input() student_id: string;
   @Input() assignments: Assignments;
+  @Input() hasMajor: boolean;
   
   constructor(
     public rubricService: RubricService,

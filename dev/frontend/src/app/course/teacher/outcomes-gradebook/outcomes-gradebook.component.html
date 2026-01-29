@@ -44,8 +44,16 @@
                                                     container="body"
                                                     tooltipClass="points-tooltip">
 
-                                                    <app-rubric-badge *ngIf="majorBadge(i, count, assessment)" [points]="assessment.points"></app-rubric-badge>
-                                                    <app-rubric-badge *ngIf="minorBadge(i, count, assessment)" [points]="assessment.points" [skinny]="true"></app-rubric-badge>
+                                                    <ng-container *ngIf="course.hasMajor; else noMajor">
+                                                        <app-rubric-badge *ngIf="majorBadge(i, count, assessment)" [points]="assessment.points"></app-rubric-badge>
+                                                        <app-rubric-badge *ngIf="minorBadge(i, count, assessment)" [points]="assessment.points" [skinny]="true"></app-rubric-badge>
+                                                    </ng-container>
+                                                    <ng-template #noMajor>
+                                                        <app-rubric-badge *ngIf="i + 1 > count - show_number && i < count - 1" [points]="assessment.points" [skinny]="true" [style.opacity]=".5"></app-rubric-badge>
+                                                        <app-rubric-badge *ngIf="i + 1 > count - show_number && i == count - 1" [points]="assessment.points"></app-rubric-badge>
+                                                    </ng-template>
+
+                                                    
 
                                                     <ng-template #tooltip>
                                                         <app-outcome-points-tooltip [assessment]="assessment"></app-outcome-points-tooltip>

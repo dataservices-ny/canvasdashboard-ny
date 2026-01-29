@@ -17,6 +17,7 @@ export interface Course {
     },
     assignments?: Assignments,
     assignments_groups?: string[],
+    hasMajor?: boolean,
     submissions?: Submissions,
     activities?: Activities,
     outcomes?: {

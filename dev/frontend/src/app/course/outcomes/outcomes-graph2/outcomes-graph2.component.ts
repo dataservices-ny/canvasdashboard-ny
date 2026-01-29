@@ -2,6 +2,7 @@ import { GradingPeriod } from './../../../core/models/grading-period';
 import { Assignments } from 'src/app/core/models/assignments';
 import { Component, OnInit, ElementRef, ViewChildren, QueryList, AfterViewChecked, OnDestroy } from '@angular/core';
 import { Outcomes } from 'src/app/core/models/outcomes';
+import { Course } from 'src/app/core/models/course';
 import { RubricService } from 'src/app/core/services/rubric.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { AssignmentModalService } from 'src/app/shared/assignment-modal/assignment-modal.service';
@@ -28,6 +29,7 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
   student_outcomes: Outcomes;
   selected_group: string;
   selected_period: GradingPeriod;
+  course: Course;
 
   constructor(
     private courseService: CourseService,
@@ -78,6 +80,7 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
         take(1)
       )
       .subscribe(course => {
+        this.course = course;
         this.assignments = course.assignments
         if (this.assessments_loaded == false) {
           this.student_outcomes = {}

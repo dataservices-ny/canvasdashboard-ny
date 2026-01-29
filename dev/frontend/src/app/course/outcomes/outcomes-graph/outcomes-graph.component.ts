@@ -9,6 +9,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { skipWhile, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { CourseService } from '../../course.service';
+import { Course } from 'src/app/core/models/course';
 
 @Component({
   selector: 'app-outcomes-graph',
@@ -27,6 +28,7 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
   student_outcomes: Outcomes;
   selected_group: string;
   selected_period: GradingPeriod;
+  course: Course;
 
   constructor(
     private dataService: DataService,
@@ -75,6 +77,7 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
           take(1)
         )
         .subscribe(course => {
+          this.course = course;
           this.assignments = course.assignments
           if (this.assessments_loaded == false) {
             this.student_outcomes = {}

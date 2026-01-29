@@ -41,7 +41,7 @@ You will need to have some App Engine stuff set up.  See below.
 
 
 # Deploying to App Engine
-1. Create the folders `build-nyc` and `build-sp` in the root directory
+1. Create the folders `build-nyc` in the root directory
 1. Go to the `dev/frontend` directory
 2. Run `npm run buildprod`.  This will build the Angular project and then run `build-servers.sh` to move the build files to the appropriate directories to be used in the Flask aplication for the dev, NY, SP and SV builds.
 3. Copy the file `app.yaml` to the folders `build-nyc`,`build-sp`,`build-sz` and `build-sv`. The env_variables and vpc_access_connector need to be entered for each instance:

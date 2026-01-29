@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { Outcomes } from 'src/app/core/models/outcomes';
 import { DataService } from 'src/app/core/services/data.service';
 import { CourseService } from '../../course.service';
+import { Course } from 'src/app/core/models/course';
 
 @Component({
   selector: 'app-outcomes-list',
@@ -28,6 +29,7 @@ export class OutcomesListComponent implements OnInit, OnDestroy {
   student_outcomes: Outcomes;
   selected_group: string;
   selected_period: GradingPeriod;
+  course: Course;
 
   constructor(
     private dataService: DataService,
@@ -76,6 +78,7 @@ export class OutcomesListComponent implements OnInit, OnDestroy {
           take(1)
         )
         .subscribe(course => {
+          this.course = course;
           if( !('outcomes' in course)) return null
           if( !(this.student_id in course.outcomes)) return null
           

@@ -234,6 +234,10 @@ export class DataService {
         if(!('assignments_groups' in course)) {
           course.assignments_groups = [];
         }
+        // Initialize course.hasMajor flag
+        if(!('hasMajor' in course)) {
+          course.hasMajor = false;
+        }
         // Check to see if all assignments or the assignments for the requested student are already loaded
         if( course.all_assignments_loaded || (student_id && course.assignments_loaded_for.includes(student_id))){
           return
@@ -268,14 +272,16 @@ export class DataService {
               }
               
               // Build the assignments_groups array (unique values)
+              const assignmentGroups = new Set<string>();
               for (let a in course.assignments) {
                 let group = course.assignments[a].assignment_group
 
-                if ( !(course.assignments_groups.includes(group)) ) {
-                  course.assignments_groups.push(group)
+                if (typeof group == 'string') {
+                  assignmentGroups.add(group)
                 }
               }
-              course.assignments_groups = [...new Set(course.assignments_groups)];
+              course.assignments_groups = [...assignmentGroups];
+              course.hasMajor = course.assignments_groups.some(group => group.toLowerCase().includes('major'));
 
               // Add the student_id to the list of students for whom assignments are loaded 
               // else for teachers and admins set course.all_assignments_loaded = true
