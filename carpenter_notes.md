@@ -130,3 +130,6 @@
     * * Cleaned up directory creation
 * dev/main.py
     * updates to Flask session management for updated python version and requirements
+
+* dev/frontend/outcomes-XXX.component.html, dev/frontend/outcomes-XXX.component.ts, dev/frontend/outcomes-XXX.component.scss
+    * Added read more collapsible behavior on the long outcome description

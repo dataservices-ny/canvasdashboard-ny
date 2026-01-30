@@ -47,7 +47,18 @@
 
                 <div class="card-body" 
                     id="o-body-{{outcome.key}}" [ngbCollapse]="outcomes_collapsed[outcome.key]">
-                    <div class="row d-flex d-inline-flex mx-1 p-2 small border round" [innerHTML]="outcome.value.description"></div>
+                    <div class="row d-flex d-inline-flex mx-1 p-2 small border round">
+                        <div class="outcome-description"
+                            [class.is-expanded]="description_expanded[outcome.key]"
+                            [class.is-collapsed]="!description_expanded[outcome.key]">
+                            <span class="outcome-description-content" [innerHTML]="outcome.value.description"></span>
+                            <a *ngIf="outcome.value.description" href=""
+                                class="read-more-link"
+                                (click)="$event.preventDefault(); toggleDescription(outcome.key)">
+                                {{ description_expanded[outcome.key] ? 'Read less' : 'Read more' }}
+                            </a>
+                        </div>
+                    </div>
                     <app-outcome-assignment-list [student_id]="student_id" [course_id]="course_id" [assessments]="outcome.value.assessments" [assignments]="assignments" [hasMajor]="course?.hasMajor"></app-outcome-assignment-list>
                 </div>
             

@@ -24,6 +24,7 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
   student_id: string;
   outcomes: Outcomes;
   outcomes_collapsed: { [K: string]: boolean };
+  description_expanded: { [K: string]: boolean };
   assessments_loaded: boolean;
   assignments: Assignments;
   student_outcomes: Outcomes;
@@ -67,6 +68,7 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
       this.course_id = course_student_ids.course_id
       this.outcomes = {};
       this.outcomes_collapsed = {};
+      this.description_expanded = {};
       this.assessments_loaded = false;
 
       this.dataService.getCourse(this.course_id, this.student_id, false)
@@ -132,6 +134,9 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
 
       // organize assessment groups
       this.outcomes_collapsed[key] = true;
+      if (this.description_expanded[key] === undefined) {
+        this.description_expanded[key] = false;
+      }
       outcome.assessment_groups = {}
       let index = 0;
       outcome.assessments.forEach((assessment, i) => {
@@ -155,6 +160,10 @@ export class OutcomesGraph2Component implements OnInit, OnDestroy, AfterViewChec
 
   collapse(outcome_id): void {
     this.outcomes_collapsed[outcome_id] = !this.outcomes_collapsed[outcome_id];
+  }
+
+  toggleDescription(outcome_id): void {
+    this.description_expanded[outcome_id] = !this.description_expanded[outcome_id];
   }
   
   ngAfterViewChecked(): void{

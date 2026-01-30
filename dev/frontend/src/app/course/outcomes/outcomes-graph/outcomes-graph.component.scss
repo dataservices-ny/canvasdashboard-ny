@@ -14,3 +14,44 @@
     position: absolute;
     top: 24px;
 }
+
+.outcome-description {
+    position: relative;
+    line-height: 1.25em;
+}
+
+.outcome-description-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.outcome-description.is-expanded .outcome-description-content {
+    display: block;
+    -webkit-line-clamp: unset;
+}
+
+.read-more-link {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.outcome-description.is-collapsed .read-more-link::before {
+    content: '… ';
+}
+
+.outcome-description.is-collapsed .read-more-link {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    padding-left: 0.35em;
+}
+
+.outcome-description.is-expanded .read-more-link {
+    position: static;
+    margin-left: 0.25em;
+}

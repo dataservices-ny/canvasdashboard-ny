@@ -23,6 +23,7 @@ export class OutcomesListComponent implements OnInit, OnDestroy {
   student_id: string;
   outcomes: Outcomes = {};
   outcomes_collapsed: { [K: number]: boolean } = {}
+  description_expanded: { [K: string]: boolean } = {};
   keyIsCollapsed: boolean = true;
   assessments_loaded: boolean;
   assignments: Assignments;
@@ -152,6 +153,9 @@ export class OutcomesListComponent implements OnInit, OnDestroy {
 
       // organize assessment groups
       this.outcomes_collapsed[key] = false;
+      if (this.description_expanded[key] === undefined) {
+        this.description_expanded[key] = false;
+      }
       outcome.assessment_groups = {}
       let index = 0;
       outcome.assessments.forEach((assessment, i) => {
@@ -175,6 +179,10 @@ export class OutcomesListComponent implements OnInit, OnDestroy {
 
   collapse(outcome_id): void {
     this.outcomes_collapsed[outcome_id] = !this.outcomes_collapsed[outcome_id]
+  }
+
+  toggleDescription(outcome_id): void {
+    this.description_expanded[outcome_id] = !this.description_expanded[outcome_id];
   }
 
 }

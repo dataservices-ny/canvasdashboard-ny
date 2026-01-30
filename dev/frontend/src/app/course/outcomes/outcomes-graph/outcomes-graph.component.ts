@@ -23,6 +23,7 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
   student_id: string;
   outcomes: Outcomes;
   outcomes_collapsed: { [K: string]: boolean };
+  description_expanded: { [K: string]: boolean };
   assessments_loaded: boolean;
   assignments: Assignments;
   student_outcomes: Outcomes;
@@ -65,6 +66,7 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
 
       this.outcomes = {};
       this.outcomes_collapsed = {};
+      this.description_expanded = {};
       this.assessments_loaded = false;
       
       this.dataService.getCourse(this.course_id, this.student_id, false)
@@ -147,6 +149,9 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
       outcome.assessments.sort((a,b) => (a.dueAt < b.dueAt) ? 1 : ((a.dueAt > b.dueAt) ? -1 : 0))
       // organize assessment groups
       this.outcomes_collapsed[key] = true;
+      if (this.description_expanded[key] === undefined) {
+        this.description_expanded[key] = false;
+      }
       outcome.assessment_groups = {}
       let index = 0;
       outcome.assessments.forEach((assessment, i) => {
@@ -170,6 +175,10 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
 
   collapse(outcome_id): void {
     this.outcomes_collapsed[outcome_id] = !this.outcomes_collapsed[outcome_id];
+  }
+
+  toggleDescription(outcome_id): void {
+    this.description_expanded[outcome_id] = !this.description_expanded[outcome_id];
   }
 
 
