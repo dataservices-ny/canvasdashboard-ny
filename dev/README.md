@@ -44,12 +44,11 @@ You will need to have some App Engine stuff set up.  See below.
 1. Create the folders `build-nyc` in the root directory
 1. Go to the `dev/frontend` directory
 2. Run `npm run buildprod`.  This will build the Angular project and then run `build-servers.sh` to move the build files to the appropriate directories to be used in the Flask aplication for the dev, NY, SP and SV builds.
-3. Copy the file `app.yaml` to the folders `build-nyc`,`build-sp`,`build-sz` and `build-sv`. The env_variables and vpc_access_connector need to be entered for each instance:
+3. Copy the file `app.yaml` to the `build-nyc` folder. The env_variables and vpc_access_connector need to be entered for each instance:
 `CANVAS_DEV_KEY_CLIENT_ID` is available within Canvas (Admin > Developer Keys)
 `REDISHOST` and `REDISPORT` can be found on the Google Cloud Console, under the product Redis Memorystore
-`FLASK_SESSION_KEY` is available in the file `gunicorn.conf.py`
 3. Go to the `dev` directory.
 4. Run `bash deploy-test.sh`.  This will deploy the application to a test version on App Engine.
-5. Confirm application on https://test-dot-canvas-dashboard-avenues-nyc.appspot.com and https://test-dot-canvas-dashboard-avenues-spb.ue.r.appspot.com are working as expected.
+5. Confirm application on https://test-dot-canvas-dashboard-avenues-nyc.appspot.com is working as expected.
 6. Run `bash deploy.sh _version_` (ex. `bash deploy.sh beta35`).  This will deploy the application to the live server and migrate traffic to the updated version.  For a slower approach, see the comments in `dev/deply.sh`
     - You can check the currently deployed version

@@ -1,10 +1,6 @@
-runtime: python
+runtime: python313
 env: standard
 entrypoint: gunicorn -b :$PORT main:app
-
-runtime_config:
-    operating_system: "ubuntu24"
-
 
 handlers:
   - url: /static
@@ -27,6 +23,7 @@ env_variables:
   CANVAS_BASE_URL: '<<CANVAS_BASE_URL>>'
   REDISHOST: '10.79.228.27'
   REDISPORT: '6379'
+  FLASK_SESSION_KEY_SECRET_ID: 'flask_session_key'
 
 vpc_access_connector:
   name: '<<VPC_ACCESS_CONNECTOR_FROM_GOOGLE_CLOUD_PROJECT>>'

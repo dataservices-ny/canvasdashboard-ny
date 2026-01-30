@@ -13,14 +13,11 @@ bash ../build-dev.sh
 ## NY Frontend
 rm -rf ../../build-nyc/static
 rm -rf ../../build-nyc/templates
-mkdir ../../build-nyc/static
-mkdir ../../build-nyc/static/img
-mkdir ../../build-nyc/templates
+mkdir -p ../../build-nyc/static/img
+mkdir -p ../../build-nyc/templates
 cp ./dist-ny/*.js ./dist-ny/*.css ../../build-nyc/static
 cp ./dist-ny/static/img/* ../../build-nyc/static/img
 cp ./dist-ny/index.html ../../build-nyc/templates
-cp ./dist-ny/lti_redirect.html ../../build-nyc/templates
-cp ./dist-ny/safari_redirect.html ../../build-nyc/templates
 
 ## NY Backend
 rm -rf ../../build-nyc/api
@@ -31,4 +28,3 @@ cp ../templates/safari_redirect.html ../../build-nyc/templates
 cp ../requirements.txt ../../build-nyc/requirements.txt
 cp ../.gcloudignore ../../build-nyc/.gcloudignore
 cp -R ../flask_session_patch ../../build-nyc/flask_session_patch
-

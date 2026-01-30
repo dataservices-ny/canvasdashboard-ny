@@ -14,7 +14,7 @@ from datetime import datetime, timedelta, timezone
 # until flask-session releases support for SameSite argument
 from flask_session_patch import Session
 
-from api import (canvas_oauth, canvas_api)
+from api import (canvas_oauth, canvas_api, secrets)
 from api.exceptions import (MissingTokenError, InvalidOAuthStateError,
                              InvalidOAuthReturnError)
 
@@ -31,6 +31,9 @@ SESSION_REDIS = redis.Redis(host=redis_host, port=redis_port, db=0)
 # Create Flask app
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config.setdefault("SESSION_COOKIE_NAME", "session")
+# Backward-compat for older Flask-Session patches expecting this attribute.
+app.session_cookie_name = app.config["SESSION_COOKIE_NAME"]
 app.config.update(
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
@@ -39,7 +42,11 @@ app.config.update(
 Session(app)
 app.permanent_session_lifetime = timedelta(hours=12)
 
-app.secret_key = os.environ["FLASK_SESSION_KEY"].encode('utf-8')
+flask_session_key = os.environ.get("FLASK_SESSION_KEY")
+if not flask_session_key:
+    secret_id = os.environ.get("FLASK_SESSION_KEY_SECRET_ID", "flask_session_key")
+    flask_session_key = secrets.get_secret(secret_id)
+app.secret_key = flask_session_key.encode('utf-8')
 
 if not os.getenv('GAE_ENV', '').startswith('standard'):
     app.config['CORS_HEADERS'] = 'Content-Type'

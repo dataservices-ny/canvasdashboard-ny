@@ -13,9 +13,9 @@
     [x] course/teacher/outcomes-gradebook
     [x] course/outcomes/outcome-assignment-list
 
-    [ ] Python update <-- requires testing
+    [x] Python update <-- requires testing
 
-    [ ] TODO: These changes should be conditional on courses having "major" assignments, else it should default to the old system
+    [x] TODO: These changes should be conditional on courses having "major" assignments, else it should default to the old system
 
     
 
@@ -121,3 +121,12 @@
     * Updated for new Python version compatibility
 * dev/flask_session_patch/sessions.py
     * Updated for new Python version compatibility
+
+* dev/app.yaml
+    * Updated to modern app engine configuration and python313 runtime
+* dev/build-dev.sh
+    * Cleaned up directory creations
+* dev/build-servers.sh
+    * * Cleaned up directory creation
+* dev/main.py
+    * updates to Flask session management for updated python version and requirements
