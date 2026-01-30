@@ -3,42 +3,15 @@
 ### Views to fix
 
     [x] course/outcomes/outcomes-graph (dots) 
-        --> this sends assessments to outcome-dot-group 
-        --> the outcome-dot-group uses the dot.ts model 
-        --> CHANGE! I added a property to dot.ts: icon: string to hold "dot" or "star"
     [x] course/outcomes/graph-dot-group
     [x] course/outcomes/outcomes-graph2
     [x] course/outcomes/outcomes-key
     [x] course/outcomes/outcomes-graph-key
     [x] course/teacher/outcomes-gradebook
     [x] course/outcomes/outcome-assignment-list
-
-    [x] Python update <-- requires testing
-
-    [x] TODO: These changes should be conditional on courses having "major" assignments, else it should default to the old system
-
+    [x] Changes should be conditional on courses having "major" assignments, else it should default to the old system
     
-
-
-## 12/17
-
-* Got environment up and running on school laptop.
-* Working on getting assignment groups and putting a tag on the course in the frontend to trigger the "major" assignments views.
-    * api/assignments is returns assignment_group as one of the keys on each assignment. That's good.
-    * In frontend, the course.ts model contains assignment_groups?: string[].
-    * This is populated when assignments are fetched, so it should be available in all of the relevant views.
-* TODO: Found some issues with the Angular dev server (ng serve). There are some version issues to sort out.  Run `ng serve` to see what.
-
-## 12/22
-* Got `dot-graph-group` working with star icons
-+ Got `outcomes-graph-2` working with `skinny` badges for non-major assignments
-
-## 1/7
-* Updated deploy-test.sh and deploy.sh to remove deployment to SP, SZ, and SV
-
-## 1/26
-* Finished up changes to keys, outcome-graph2, and outcome-gradebook
-
+    [x] Python update
 
 
 # CHANGE LOG
