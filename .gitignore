@@ -2,6 +2,7 @@
 dump.rdb
 .vscode/
 env/
+.venv/
 
 dev/__pycache__
 dev/api/__pycache__
