@@ -1,85 +1,93 @@
-<div class="d-flex flex-column align-items-start">
-    
-    <div *ngIf="course$ | async as course" class="sticky-left pl-2 w-100 course-header" [style.z-index]=5>
-        
-        <app-page-header [title]="'Feedback for ' + course.course_name" [subtitle]="student && (mode$ | async) == 'student' ? student.name: ''"></app-page-header>
-        
-        <div *ngIf="(router.url.includes('outcomes') && course.outcomes && course.assignments) || (router.url.includes('assignment') && course.assignments)" class="w-100">
-            <app-data-filter [assignments_groups]="course.assignments_groups" [periods]="course.periods"></app-data-filter>
-        </div>
+<div class="course-layout" [class.is-panel-open]="isGradeEstimatorEligible && isGradeEstimatorOpen">
+    <div class="course-main">
+        <div class="d-flex flex-column align-items-start">
+            <div *ngIf="course$ | async as course" class="sticky-left pl-2 w-100 course-header" [style.z-index]=5>
+                <app-page-header [title]="'Feedback for ' + course.course_name" [subtitle]="student && (mode$ | async) == 'student' ? student.name: ''"></app-page-header>
 
-        <div *ngIf="course.sections && (mode$ | async) != 'student'" class="mb-4">
-            <div *ngIf="student">
-                <div class="d-inline-block pr-3">
-                    <span class="h5">Student: </span>
-                    <div class="btn-group">
-                        <button class="btn btn-outline-dark" (click)="incrementStudent(course.course_id, student_id, -1)"><h6 class="student-increment-arrow">&#9664;</h6></button>
-                        <div ngbDropdown>
-                            <button class="btn btn-outline-dark" id="studentDropdown" ngbDropdownToggle>
-                                {{ student_name }}
-                            </button>
-                            <div ngbDropdownMenu aria-labelledby="studentDropdown">
-                                <div *ngFor="let section of course.sections | keyvalue | sortBy:'asc':'value.section_name'">
-                                    <h6 class="dropdown-header">{{ section.value.section_name }}</h6>
-                                    <button *ngFor="let student of section.value.students | sortBy:'asc':'sortable_name'"
-                                            ngbDropdownItem
-                                            (click)="goToStudent(course.course_id, student.id, student_name)"
-                                            class="text-truncate">
-                                        {{ student.name }}
+                <div *ngIf="(router.url.includes('outcomes') && course.outcomes && course.assignments) || (router.url.includes('assignment') && course.assignments)" class="w-100">
+                    <app-data-filter [assignments_groups]="course.assignments_groups" [periods]="course.periods"></app-data-filter>
+                </div>
+
+                <div *ngIf="course.sections && (mode$ | async) != 'student'" class="mb-4">
+                    <div *ngIf="student">
+                        <div class="d-inline-block pr-3">
+                            <span class="h5">Student: </span>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-dark" (click)="incrementStudent(course.course_id, student_id, -1)"><h6 class="student-increment-arrow">&#9664;</h6></button>
+                                <div ngbDropdown>
+                                    <button class="btn btn-outline-dark" id="studentDropdown" ngbDropdownToggle>
+                                        {{ student_name }}
                                     </button>
-                                    <div class="dropdown-divider"></div>
+                                    <div ngbDropdownMenu aria-labelledby="studentDropdown">
+                                        <div *ngFor="let section of course.sections | keyvalue | sortBy:'asc':'value.section_name'">
+                                            <h6 class="dropdown-header">{{ section.value.section_name }}</h6>
+                                            <button *ngFor="let student of section.value.students | sortBy:'asc':'sortable_name'"
+                                                    ngbDropdownItem
+                                                    (click)="goToStudent(course.course_id, student.id, student_name)"
+                                                    class="text-truncate">
+                                                {{ student.name }}
+                                            </button>
+                                            <div class="dropdown-divider"></div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <button class="btn btn-outline-dark" (click)="incrementStudent(course.course_id, student_id, 1)"><h6 class="student-increment-arrow">&#9654;</h6></button>
                             </div>
                         </div>
-                        <button class="btn btn-outline-dark" (click)="incrementStudent(course.course_id, student_id, 1)"><h6 class="student-increment-arrow">&#9654;</h6></button>
+                        <div class="d-inline-block">
+                            <button class="btn btn-outline-dark" 
+                                    [routerLink]="['/','dashboard', 'student', student_id]">
+                                See all classes
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="d-inline-block">
-                    <button class="btn btn-outline-dark" 
-                            [routerLink]="['/','dashboard', 'student', student_id]">
-                        See all classes
-                    </button>
-                </div>
+
+                <nav class="nav nav-pills flex-column flex-sm-row mb-4 sticky-left">
+                    <li class="nav-item">
+                        <a class="flex-sm text-sm-center nav-link" 
+                            [routerLink]="['assignments']"
+                            routerLinkActive="active">
+                            Assignments</a>
+                    </li>
+
+                    <ng-template [ngIf]="course.outcomes && (course.outcomes | json) != '{}'">
+                        <li class="nav-item">
+                            <a class="flex-sm text-sm-center nav-link"
+                            [routerLink]="['outcomes-timeline']"
+                            routerLinkActive="active">
+                            Outcomes Timeline</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="flex-sm text-sm-center nav-link"
+                            [routerLink]="['outcomes-graph']"
+                            routerLinkActive="active">
+                            Outcomes Graph</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="flex-sm text-sm-center nav-link"
+                            [routerLink]="['outcomes-list']"
+                            routerLinkActive="active">
+                            Outcomes List</a>
+                        </li>
+                        <li class="nav-item" *ngIf="isGradeEstimatorEligible && !isGradeEstimatorOpen">
+                            <button class="flex-sm text-sm-center nav-link btn btn-link grade-estimator-toggle" (click)="toggleGradeEstimator()">
+                                Grade estimator
+                            </button>
+                        </li>
+                    </ng-template>
+                    
+
+                </nav>
             </div>
         </div>
 
-        <nav class="nav nav-pills flex-column flex-sm-row mb-4 sticky-left">
-            
-            <!-- Assignments -->
-            <li class="nav-item">
-                <a class="flex-sm text-sm-center nav-link" 
-                    [routerLink]="['assignments']"
-                    routerLinkActive="active">
-                    Assignments</a>
-            </li>
-
-            <!-- Check for outcomes before displaying outcomes tabs -->
-            <ng-template [ngIf]="course.outcomes && (course.outcomes | json) != '{}'">
-                <li class="nav-item">
-                    <a class="flex-sm text-sm-center nav-link"
-                    [routerLink]="['outcomes-timeline']"
-                    routerLinkActive="active">
-                    Outcomes Timeline</a>
-                </li>
-                <li class="nav-item">
-                    <a class="flex-sm text-sm-center nav-link"
-                    [routerLink]="['outcomes-graph']"
-                    routerLinkActive="active">
-                    Outcomes Graph</a>
-                </li>
-                <li class="nav-item">
-                    <a class="flex-sm text-sm-center nav-link"
-                    [routerLink]="['outcomes-list']"
-                    routerLinkActive="active">
-                    Outcomes List</a>
-                </li>
-            </ng-template>
-            
-        </nav>
+        <div class="course-content">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-</div>
 
-<div class="course-content">
-    <router-outlet></router-outlet>
+    <aside *ngIf="isGradeEstimatorEligible" class="grade-estimator-panel" [class.is-open]="isGradeEstimatorOpen">
+        <app-grade-estimator (closePanel)="closeGradeEstimator()"></app-grade-estimator>
+    </aside>
 </div>
-

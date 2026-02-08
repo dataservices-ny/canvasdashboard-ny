@@ -71,8 +71,10 @@ async def user(base_url: str, access_token: str):
     
     for enrollment in [e for e in enrollments if 'observed_user' in e]:
         if enrollment['observed_user']['id'] not in observer_oids:
+            observed_login_id = enrollment['observed_user']['email'] if 'email' in enrollment['observed_user'] else enrollment['observed_user']['login_id'] if 'login_id' in enrollment['observed_user'] else None
             observer.append({
-                                'email': enrollment['observed_user']['email'] if 'email' in enrollment['observed_user'] else enrollment['observed_user']['login_id'] if 'login_id' in enrollment['observed_user'] else None,
+                                'email': observed_login_id,
+                                'grade': _grade_from_login_id(observed_login_id),
                                 'id': str(enrollment['observed_user']['id']),
                                 'name': enrollment['observed_user']['name'],
                                 'short_name': enrollment['observed_user']['short_name'],
@@ -116,6 +118,7 @@ async def user(base_url: str, access_token: str):
                         students = [
                             {  'id': str(s['id']), 
                                 'email': s['email'] if 'email' in s else s['login_id'] if 'login_id' in s else None,
+                                'grade': _grade_from_login_id(s['email'] if 'email' in s else s['login_id'] if 'login_id' in s else None),
                                 'name': s['name'],
                                 'short_name': s['short_name'],
                                 'sortable_name': s['sortable_name'],
@@ -220,6 +223,24 @@ async def terms(base_url: str, access_token):
     return terms
     
 
+def _grade_from_login_id(login_id: str):
+    if not login_id or '@' not in login_id:
+        return None
+    prefix = login_id.split('@')[0]
+    if len(prefix) < 2 or not prefix[-2:].isdigit():
+        return None
+    now = datetime.now()
+    if now.month > 7:
+        current_grad_year = int(str(now.year + 1)[-2:])
+    else:
+        current_grad_year = int(str(now.year)[-2:])
+    grad_year = int(prefix[-2:])
+    grade = 12 - (grad_year - current_grad_year)
+    if grade < 6 or grade > 12:
+        return None
+    return str(grade)
+
+
 async def get_student(base_url: str, access_token: str, student_id: str):
     
     semaphore = asyncio.Semaphore(100)
@@ -245,14 +266,16 @@ async def get_student(base_url: str, access_token: str, student_id: str):
             for t in terms_resp
         ])
 
+    login_id = student_resp['email'] if 'email' in student_resp \
+                 else student_resp['primary_email'] if 'primary_email' in student_resp \
+                 else student_resp['login_id'] if 'login_id' in student_resp \
+                 else None
     student = {
         'id': str(student_resp['id']),
         'name': student_resp['name'],
         'sortable_name': student_resp['sortable_name'],
-        'email': student_resp['email'] if 'email' in student_resp 
-                 else student_resp['primary_email'] if 'primary_email' in student_resp 
-                 else student_resp['login_id'] if 'login_id' in student_resp 
-                 else None,
+        'email': login_id,
+        'grade': _grade_from_login_id(login_id),
         'courses': []
     }
     
@@ -303,14 +326,16 @@ async def get_multiple_students(base_url: str, access_token: str, students_ids: 
 
     students = []
     for student in student_resp:
+        login_id = student['email'] if 'email' in student \
+                    else student['primary_email'] if 'primary_email' in student \
+                    else student['login_id'] if 'login_id' in student \
+                    else None
         student_data = {
             'id': str(student['id']),
             'name': student['name'],
             'sortable_name': student['sortable_name'],
-            'email': student['email'] if 'email' in student 
-                    else student['primary_email'] if 'primary_email' in student 
-                    else student['login_id'] if 'login_id' in student 
-                    else None,
+            'email': login_id,
+            'grade': _grade_from_login_id(login_id),
             'courses': []
         }
         students.append(student_data)
@@ -459,6 +484,7 @@ async def course(base_url: str, access_token: str, course: str, student: str, ad
                             students = [
                                 {   'id': str(s['id']), 
                                     'email': s['email'] if 'email' in s else s['login_id'] if 'login_id' in s else None,
+                                    'grade': _grade_from_login_id(s['email'] if 'email' in s else s['login_id'] if 'login_id' in s else None),
                                     'name': s['name'],
                                     'short_name': s['short_name'],
                                     'sortable_name': s['sortable_name'],

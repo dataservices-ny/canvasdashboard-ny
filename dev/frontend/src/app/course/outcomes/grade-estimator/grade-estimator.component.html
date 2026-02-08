@@ -1,1 +1,59 @@
-<p>grade-estimator works!</p>
+<div class="grade-estimator-shell">
+    <div class="grade-estimator-header">
+        <h4>Grade Estimator</h4>
+        <button class="grade-estimator-close" type="button" (click)="close()" aria-label="Close grade estimator">
+            &#10005;
+        </button>
+    </div>
+    <small>
+        <p>This tool helps you review your outcomes-based feedback and estimate your current letter grade. There is no magic formula for summarizing all of your feedback for an outcome into one single A, P, D, or NY. As you review your feedback for each outcomes, consider the following:</p>
+        <ul>
+            <li><strong>Recency:</strong> How have you done on the most recent few assessments?</li>  
+            <li><strong>Robustness:</strong> Bigger, more important assessments like tests and major projects should be weighed more than smaller assignments.</li>
+            <li><strong>Consistency:</strong> One recent assessment may not outweigh a consistent pattern of assessments.</li> 
+        </ul>
+        <p>For each outcomes, review your feedback and select an overall grade that summarizes your current level of skill or understanding.</p>
+    </small>
+    <div class="grade-estimator-divider"></div>
+
+    <div class="grade-estimator-late">
+        <p>Having too many late and incomplete assignments can effect your letter grade.</p>
+        <span class="grade-estimator-late-summary">You have <strong>{{ lateIncompleteCount }}</strong> late/incomplete assignments out of {{ semesterAssignmentCount }} this semester: <strong>{{ lateIncompletePercent() }}%</strong></span>
+    </div>
+    <div class="grade-estimator-late-message" [class.is-critical]="lateIncompletePercent() >= 20">
+        <strong>{{ lateIncompletePercent() }}%</strong> {{ lateIncompleteMessage() }}
+    </div>
+    <div class="grade-estimator-divider"></div>
+
+    <div class="grade-estimator-tardy">
+        <span>Having too many tardies can also effect your letter grade.</span>
+    </div>
+    <div class="grade-estimator-tardy">
+        <span>Tardies this semester</span>
+        <input class="form-control form-control-sm grade-estimator-tardy-input" type="number" min="0" [ngModel]="tardyCount" (ngModelChange)="setTardyCount($event)">
+    </div>
+    <div class="grade-estimator-tardy-message" *ngIf="tardyCount != null" [class.is-critical]="tardyCount >= 6">
+        {{ tardyMessage() }}
+    </div>
+    <div class="grade-estimator-divider"></div>
+
+    <div class="grade-estimator-outcomes" *ngIf="(outcomes | json) != '{}'">
+        <div class="grade-estimator-outcome" *ngFor="let outcome of outcomes | keyvalue">
+            <div class="grade-estimator-outcome-title">{{ outcome.value.title }}</div>
+            <select class="form-control form-control-sm grade-estimator-outcome-select" [ngClass]="gradeClass(selectedGrades[outcome.key])" [(ngModel)]="selectedGrades[outcome.key]">
+                <option value="">Select</option>
+                <option value="A">A</option>
+                <option value="P">P</option>
+                <option value="D">D</option>
+                <option value="NY">NY</option>
+                <option value="NA">NA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grade-estimator-estimate">
+        Estimated Letter Grade: <span class="grade-estimator-estimate-value">{{ estimatedLetterGrade() }}</span>
+    </div>
+    
+
+</div>

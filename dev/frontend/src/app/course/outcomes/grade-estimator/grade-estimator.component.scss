@@ -1,0 +1,173 @@
+@use "sass:color";
+@use "sass:map";
+@import "variables";
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.grade-estimator-shell {
+    position: relative;
+    min-height: 100%;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+}
+
+.grade-estimator-late {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0rem;
+    font-size: 0.9rem;
+}
+
+.grade-estimator-late-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.grade-estimator-late-summary {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.grade-estimator-outcomes {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.grade-estimator-late-message {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.grade-estimator-late-message.is-critical {
+    color: #dc3545;
+}
+
+.grade-estimator-divider {
+    margin: 0.75rem 0;
+    border-bottom: 1px solid color.scale($body-color, $lightness: 70%);
+}
+
+.grade-estimator-tardy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.grade-estimator-tardy + .grade-estimator-tardy {
+    margin-top: 0.5rem;
+}
+
+.grade-estimator-tardy-input {
+    width: 4rem;
+}
+
+.grade-estimator-tardy-message {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.grade-estimator-tardy-message.is-critical {
+    color: #dc3545;
+}
+
+.grade-estimator-estimate {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.grade-estimator-estimate-value {
+    font-weight: 700;
+}
+
+.grade-estimator-outcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid color.scale($body-color, $lightness: 70%);
+}
+
+.grade-estimator-outcome-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.95rem;
+}
+
+.grade-estimator-outcome-select {
+    flex: 0 0 5rem;
+    max-width: 5rem;
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-a,
+.grade-estimator-outcome-select.grade-estimator-select-p,
+.grade-estimator-outcome-select.grade-estimator-select-d,
+.grade-estimator-outcome-select.grade-estimator-select-ny,
+.grade-estimator-outcome-select.grade-estimator-select-na {
+    color: #fff;
+    font-weight: 700;
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-a {
+    background-color: map.get($theme-colors, "rubric-advanced");
+    border-color: map.get($theme-colors, "rubric-advanced");
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-p {
+    background-color: map.get($theme-colors, "rubric-proficient");
+    border-color: map.get($theme-colors, "rubric-proficient");
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-d {
+    background-color: map.get($theme-colors, "rubric-developing");
+    border-color: map.get($theme-colors, "rubric-developing");
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-ny {
+    background-color: map.get($theme-colors, "rubric-not-yet");
+    border-color: map.get($theme-colors, "rubric-not-yet");
+}
+
+.grade-estimator-outcome-select.grade-estimator-select-na {
+    background-color: map.get($theme-colors, "rubric-na");
+    border-color: map.get($theme-colors, "rubric-na");
+}
+
+.grade-estimator-empty {
+    margin-top: 1rem;
+    color: color.scale($body-color, $lightness: 20%);
+}
+
+.grade-estimator-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background-color: #fff;
+    padding: 0.25rem 0;
+    z-index: 1;
+}
+
+.grade-estimator-header h4 {
+    order: 1;
+    margin: 0;
+}
+
+.grade-estimator-close {
+    order: 2;
+    margin-left: auto;
+    padding: 0.25rem 0.5rem;
+    color: inherit;
+    text-decoration: none;
+}

@@ -61,6 +61,7 @@ export class UserService {
           user.student_list.push({
             email: observee.email,
             id: observee.id,
+            grade: observee.grade,
             name: observee.name,
             short_name: observee.short_name,
             sortable_name: observee.sortable_name,

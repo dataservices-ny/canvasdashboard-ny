@@ -29,5 +29,6 @@ export interface Observee {
   name: string,
   short_name: string,
   sortable_name: string,
+  grade?: string,
   courses: Course[],
 }

@@ -37,3 +37,45 @@
 .student-increment-arrow {
     margin-bottom: 0rem;
 }
+
+.course-layout {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.course-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.course-layout.is-panel-open .course-main {
+    max-width: calc(100% - 450px);
+}
+
+.grade-estimator-panel {
+    flex: 0 0 auto;
+    width: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: width 0.2s ease, max-width 0.2s ease;
+    border-left: 1px solid color.scale($body-color, $lightness: 70%);
+    height: 100%;
+    min-height: 100%;
+}
+
+.grade-estimator-panel.is-open {
+    width: 450px;
+    max-width: 450px;
+    padding-left: 1.25rem;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.grade-estimator-toggle {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}

@@ -16,6 +16,7 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { AssignmentGradebookComponent } from './teacher/assignment-gradebook/assignment-gradebook.component';
 import { OutcomesGradebookComponent } from './teacher/outcomes-gradebook/outcomes-gradebook.component';
 import { OutcomesKeyComponent } from './outcomes/outcomes-key/outcomes-key.component';
+import { GradeEstimatorComponent } from './outcomes/grade-estimator/grade-estimator.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { OutcomesKeyComponent } from './outcomes/outcomes-key/outcomes-key.compo
     TeacherComponent,
     AssignmentGradebookComponent,
     OutcomesGradebookComponent,
-    OutcomesKeyComponent
+    OutcomesKeyComponent,
+    GradeEstimatorComponent
   ],
   imports: [
     CoreModule,

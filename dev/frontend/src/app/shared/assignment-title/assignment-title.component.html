@@ -30,7 +30,9 @@
     <div class="d-flex flex-column flex-truncate">
         <div *ngIf="submission.dueAt; else assignmentDueAt"><small>{{ (submission.dueAt | date:'M/d') }}</small></div>
         <ng-template #assignmentDueAt>
-            <div *ngIf="assignment.dueAt[0].date"><small>{{ (assignment.dueAt[0].date | date:'M/d') }}</small></div>
+            <div *ngIf="assignment.dueAt?.length && assignment.dueAt[0]?.date">
+                <small>{{ (assignment.dueAt[0].date | date:'M/d') }}</small>
+            </div>
         </ng-template>
         <div class="d-inline-flex flex-truncate">
             <div [ngClass]="{ 'text-truncate': assignment.isCollapsed }" class="mr-2">{{ assignment.name }}</div>

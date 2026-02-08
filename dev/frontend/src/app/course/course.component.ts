@@ -26,6 +26,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   student_id: string;
   student_name: string;
   all_students_sorted_ids: {id: string, name: string}[];
+  isGradeEstimatorOpen: boolean;
+  isGradeEstimatorEligible: boolean;
 
   constructor(
     public route: ActivatedRoute,
@@ -41,6 +43,8 @@ export class CourseComponent implements OnInit, OnDestroy {
     
     this.subscriptions = new Subscription();
     this.all_students_sorted_ids = [];
+    this.isGradeEstimatorOpen = false;
+    this.isGradeEstimatorEligible = false;
     
     this.subscriptions.add(this.route.params.subscribe(p => {
       
@@ -91,8 +95,15 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.dataService.getStudent(this.student_id).subscribe(student => {
           this.student = student;
           this.student_name = student.name;
+          if (student?.grade != null) {
+            console.log('Student grade:', student.grade);
+          }
+          this.updateGradeEstimatorEligibility(student);
         }));
         this.dataService.getOutcomeAssessments(course_id, this.student_id);
+      } else {
+        this.isGradeEstimatorEligible = false;
+        this.isGradeEstimatorOpen = false;
       }
 
     });
@@ -115,7 +126,20 @@ export class CourseComponent implements OnInit, OnDestroy {
     this.courseService.update(course_id, student_id)
     this.location.go(`/course/${course_id}/student/${student_id}/${this.route.firstChild.snapshot.url[0].path}`);    
   }
+
+  toggleGradeEstimator(): void {
+    this.isGradeEstimatorOpen = !this.isGradeEstimatorOpen;
+  }
+
+  closeGradeEstimator(): void {
+    this.isGradeEstimatorOpen = false;
+  }
+
+  private updateGradeEstimatorEligibility(student: Student): void {
+    const gradeLevel = parseInt(student?.grade ?? '', 10);
+    this.isGradeEstimatorEligible = Number.isFinite(gradeLevel) && gradeLevel >= 8;
+    if (!this.isGradeEstimatorEligible) {
+      this.isGradeEstimatorOpen = false;
+    }
+  }
 }
-
-
-
