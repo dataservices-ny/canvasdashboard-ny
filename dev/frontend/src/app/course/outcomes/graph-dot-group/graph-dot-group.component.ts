@@ -80,8 +80,8 @@ export class GraphDotGroupComponent implements OnInit {
           .subscribe(assignment => {
             // attach assignment_group to the dot tooltip (or create a dot.assignment_group field)
             if (assignment.assignment_group != null && assignment.assignment_group.toLowerCase().includes('major')) {
-              dot.icon = 'star';
-              dot.size = 30;
+              dot.icon = 'diamond';
+              dot.size = 22;
               dot.opacity = 1;
             }
           });
