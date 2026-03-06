@@ -3,16 +3,16 @@
 ##  Starting the Angular Frontend Development Server 
 The Angular frontend developlent server will allow you to run the app locally with 
 mock data.  All API calls are intercepted by src/app/core/services/in-memory-data-service.ts
-1. Make sure the that `use_in_memory_data_service = true` in dev/frontend/src/app/core/services/core.module.ts
+1. Run `ng serve --configuration=local` from `dev/frontend`
 2. Go to the `dev/frontend` directory
-3. Run `ng serve`
+3. Run `ng serve --configuration=local`
 4. Navigate to localhost:4200
 
 
 To run the full app in development mode with real API calls...
 
 ## Build the Angular project
-1. Make sure the that `use_in_memory_data_service = false` in dev/frontend/src/app/core/services/core.module.ts
+1. Run the default build (`ng build`) from `dev/frontend`
 2. Go to the `dev/frontend` directory
 3. Run `npm run build`
 Note that `ng build` will not build correctly.  `npm run build` moves files to the appropriate
