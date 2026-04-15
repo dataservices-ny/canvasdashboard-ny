@@ -50,5 +50,5 @@ You will need to have some App Engine stuff set up.  See below.
 3. Go to the `dev` directory.
 4. Run `bash deploy-test.sh`.  This will deploy the application to a test version on App Engine.
 5. Confirm application on https://test-dot-canvas-dashboard-avenues-nyc.appspot.com is working as expected.
-6. Run `bash deploy.sh _version_` (ex. `bash deploy.sh beta35`).  This will deploy the application to the live server and migrate traffic to the updated version.  For a slower approach, see the comments in `dev/deply.sh`
+6. Run `bash deploy.sh _version_` (ex. `bash deploy.sh beta35`).  This will deploy the application to the live server and migrate traffic to the updated version.  For a slower approach, see the comments in `dev/deploy.sh`
     - You can check the currently deployed version
