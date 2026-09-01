@@ -17,10 +17,11 @@ export class SortByPipe implements PipeTransform {
       if(order==='asc'){return value.sort()}
       else{return value.sort().reverse();}
     } // sort 1d array
+    const direction: 'asc' | 'desc' = order === 'desc' ? 'desc' : 'asc';
     if(column.indexOf('.') > -1){
       let p = column.split('.')
-      return orderBy(value, (e) => e[p[0]][p[1]], [order]);
+      return orderBy(value, (e) => e[p[0]][p[1]], [direction]);
     }
-    return orderBy(value, [column], [order]);
+    return orderBy(value, [column], [direction]);
   }
 }

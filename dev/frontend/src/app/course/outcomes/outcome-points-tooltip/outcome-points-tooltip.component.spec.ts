@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OutcomesPointsTooltipComponent } from './outcome-points-tooltip.component';
+import { OutcomePointsTooltipComponent } from './outcome-points-tooltip.component';
 
-describe('OutcomesPointsTooltipComponent', () => {
-  let component: OutcomesPointsTooltipComponent;
-  let fixture: ComponentFixture<OutcomesPointsTooltipComponent>;
+describe('OutcomePointsTooltipComponent', () => {
+  let component: OutcomePointsTooltipComponent;
+  let fixture: ComponentFixture<OutcomePointsTooltipComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OutcomesPointsTooltipComponent ]
+      declarations: [ OutcomePointsTooltipComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OutcomesPointsTooltipComponent);
+    fixture = TestBed.createComponent(OutcomePointsTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
