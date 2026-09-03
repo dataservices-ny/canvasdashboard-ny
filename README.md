@@ -42,6 +42,12 @@ You will need to have some App Engine stuff set up.  See below.
 3. Copy the file `app.yaml` to the `build-nyc` folder. The env_variables and vpc_access_connector need to be entered for each instance:
 `CANVAS_DEV_KEY_CLIENT_ID` is available within Canvas (Admin > Developer Keys)
 `REDISHOST` and `REDISPORT` can be found on the Google Cloud Console, under the product Redis Memorystore
+vpc_access_connector name can be found using the Google Cloud CLI:
+    ```
+    gcloud app describe --project=<PROJECT_ID> --format="value(locationId)"   # gets the region
+    gcloud compute networks vpc-access connectors list --project=<PROJECT_ID> --region=<REGION>
+    ```
+
 3. Go to the `dev` directory.
 4. Run `bash deploy-test.sh`.  This will deploy the application to a test version on App Engine.
 5. Confirm application on https://test-dot-canvas-dashboard-avenues-nyc.appspot.com is working as expected.
