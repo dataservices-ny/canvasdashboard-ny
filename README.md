@@ -3,22 +3,17 @@
 ##  Starting the Angular Frontend Development Server 
 The Angular frontend developlent server will allow you to run the app locally with 
 mock data.  All API calls are intercepted by src/app/core/services/in-memory-data-service.ts
-1. Run `ng serve --configuration=local` from `dev/frontend`
-2. Go to the `dev/frontend` directory
-3. Run `ng serve --configuration=local`
-4. Navigate to localhost:4200
+1. Run `npm start -- --configuration=local` from `dev/frontend`
+2. Navigate to localhost:4200
 
 
 To run the full app in development mode with real API calls...
 
 ## Build the Angular project
-1. Run the default build (`ng build`) from `dev/frontend`
-2. Go to the `dev/frontend` directory
-3. Run `npm run build`
-Note that `ng build` will not build correctly.  `npm run build` moves files to the appropriate
-directories for Flask to access.
-4. Make sure that the Flask server is running (see below)
-5. Navigate to http://127.0.0.1:9000/...
+1. Go to the `dev/frontend` directory
+2. Run `npm run build`
+3. Make sure that the Flask server is running (see below)
+4. Navigate to http://127.0.0.1:9000/...
 
 
 ## Starting Flask Backend Development Server
