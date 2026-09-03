@@ -30,13 +30,21 @@ export class RubricBadgeComponent implements OnInit {
   }
 
   toText(points: number): string {
+    // Original version with +s
+    // if(points == null) return 'na'
+    // if(points >= 3) return 'A'
+    // if(points > 2) return 'P+'
+    // if(points == 2) return 'P'
+    // if(points > 1) return 'D+'
+    // if(points == 1) return 'D'
+    // if(points > 0) return 'D-'
+    // return 'NY'
+
+    // New version with no +s
     if(points == null) return 'na'
     if(points >= 3) return 'A'
-    if(points > 2) return 'P+'
-    if(points == 2) return 'P'
-    if(points > 1) return 'D+'
-    if(points == 1) return 'D'
-    if(points > 0) return 'D-'
+    if(points >= 2) return 'P'
+    if(points >= 1) return 'D'
     return 'NY'
   }
 

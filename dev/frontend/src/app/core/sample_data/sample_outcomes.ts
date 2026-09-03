@@ -17,7 +17,7 @@ export const sample_outcomes: Outcomes = {
         dueAt: '2020-04-17T23:59:59-04:00',
         htmlUrl: 'http://avenues.instructure.com/courses/1534/assignments/48150',
         name: 'Sound Modeling Poster and Video',
-        points: 2
+        points: 2.5
       },
       {
         assignment_id: 47544,
@@ -25,7 +25,7 @@ export const sample_outcomes: Outcomes = {
         dueAt: '2020-04-13T23:59:59-04:00',
         htmlUrl: 'http://avenues.instructure.com/courses/1534/assignments/47544',
         name: 'Guitar Simulator Investigation - Final Notes or Lab Report',
-        points: 2
+        points: 2.5
       },
       {
         assignment_id: 46284,

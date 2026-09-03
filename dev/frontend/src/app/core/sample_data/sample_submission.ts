@@ -889,15 +889,15 @@ export const sample_submission: Submissions = {
       rubric: {
         '6883_1846': {
           comments: 'ME+\nPoster and video clearly and accurately explain with no errors errors or misconceptions... \n+ how sound waves are transmitted by oscillating objects\n+ how sound waves travel through oscillations of air molecules\n+ how sound waves are received by causing the oscillation of tiny objects\n+ how properties of sound like amplitude and frequency are related to the oscillation of particles',
-          points: 3.5
+          points: 2.5
         },
         '6883_1937': {
           comments: 'EE\n+ Poster and video show that you did additional research into sound.\n+ Asked good clarification and curiosity questions in the discussion.',
-          points: 4
+          points: 3
         },
         '6883_5852': {
           comments: 'ME\n+ Poster uses particle diagrams to accurately model the oscillation of air molecules.\n∆ Oscillations are more regular and less random.  It would be better to show the oscillation with arrows like this <--O-->, rather than ""O""\n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,

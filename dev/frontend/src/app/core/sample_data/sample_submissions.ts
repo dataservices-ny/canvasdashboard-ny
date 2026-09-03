@@ -470,11 +470,11 @@ export const sample_submissions: Submissions = {
         },
         _8872: {
           comments: 'ME+ \n+Accurately modeled and explained the process of dissolving and crystallization.\n+ Accurately calculated the concentration of the solution after heating',
-          points: 3.5
+          points: 2.5
         },
         _9585: {
           comments: 'ME+\n+Accurately modeled and explained the process of dissolving and crystallization.',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -669,7 +669,7 @@ export const sample_submissions: Submissions = {
         },
         _7632: {
           comments: 'ME+\n+ Used spreadsheet statistics and created histograms to analyze data.\n+ Analyzed the data to support the claim that mutations are random and not controlled by the environment.\n+ Independently analyzed a complex data set to make a valid claim about the relationship mutations and the environment, but the evidence given in your analysis does not really support the claim.\n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -812,11 +812,11 @@ export const sample_submissions: Submissions = {
       rubric: {
         _7863: {
           comments: 'ME+\n+ Showed an understanding of the relationship between DNA, genes, and traits.\n+ Showed an understanding of how random mutations in DNA required for evolution.\n+ Showed an understanding of the process of natural selection through selective pressure acting on individual variation.\n+ Extended your understanding of evolution to explain the real-world case of antibiotic resistance.',
-          points: 3.5
+          points: 2.5
         },
         _8366: {
           comments: 'ME+\nClear and detailed written explanation connected observations in the video an accurate understanding of evolution by natural selection',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -1016,7 +1016,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         _1353: {
           comments: 'ME+\n+ Included clearly organized graphical and tabular sets.\n+ Analyzed graphical and tabular sets to identify a relationship and to make valid and reliable scientific claim.\n∆ Did not set up the scatterplot to accurately graph the data.  See my note on your doc.\n+ Attempted some deeper mathematical investigation of the trendline.',
-          points: 3.5
+          points: 2.5
         },
         _1780: {
           comments: 'EE\n+ Great questions to follow up this investigation.\n+ Interesting curiosity questions.',
@@ -1024,7 +1024,7 @@ export const sample_submissions: Submissions = {
         },
         _4838: {
           comments: 'ME+\n+ Made a clear claim and supported it with clear reasoning and sufficient evidence from the investigation.',
-          points: 3.5
+          points: 2.5
         },
         _5495: {
           comments: 'EE\n+ Data collected was sufficient to address the question.\n+ Skillfully used the guitar simulation and Google Sheets to collect, record, analyze, and evaluate data.\n+ Accounted for other variables by collecting a larger data set.',
@@ -1262,11 +1262,11 @@ export const sample_submissions: Submissions = {
         },
         _366: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n+ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n++ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         },
         _6512: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n+ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n++ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -2148,7 +2148,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         _2015: {
           comments: 'ME+\n+ Used a bar chart to analyze a complex data set.\n+ Did some additional data analysis to determine income averages for each sample.\n∆ Looking at the number of samples spread of data in each zip code would help you see how strong your conclusion is.  You could use a measurement called standard deviation to if the differences you observed were significant.',
-          points: 3.5
+          points: 2.5
         },
         _6859: {
           comments: 'ME.\nFuture Work section discussed some general lines of investigation, but not a specific testable scientific question.',
@@ -2156,7 +2156,7 @@ export const sample_submissions: Submissions = {
         },
         _7924: {
           comments: 'ME+\n+ Introduction clearly explains the important concepts used in the report.\n+ Methods clearly explains how the data was collected.\nAnalysis\n+ Made a clear CLAIM that was supported by your data.\n+ Provided sufficient EVIDENCE from your data to support your claim.\n+ REASONING was clear, logical and coherent. \n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -2316,7 +2316,7 @@ export const sample_submissions: Submissions = {
         },
         _4838: {
           comments: 'ME+\n+ Made a clear claim and supported it with clear reasoning and sufficient evidence from the investigation.',
-          points: 3.5
+          points: 2.5
         },
         _5495: {
           comments: 'ME\n+ Data collected was sufficient to address the question.\n+ Skillfully used the guitar simulation and Google Sheets to collect, record, analyze, and evaluate data.',
@@ -2824,7 +2824,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         _3559: {
           comments: 'ME+. Clearly explained the sticky tape investigation to your parent.   The video Demonstrated mastery of the charged particle model to explain the behavior of charged and polarized conductors and insulators.',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -3065,11 +3065,11 @@ export const sample_submissions: Submissions = {
       rubric: {
         '5714_738': {
           comments: 'ME+. Modeled and made predictions about an unfamiliar system.  Made some inaccurate assumptions about how the copper behaves after it reaches the electrode, but you definitely are have a solid understanding of the charged particle model. ',
-          points: 3.5
+          points: 2.5
         },
         '5714_8320': {
           comments: 'ME+. Modeled and made predictions about an unfamiliar system.  Made some inaccurate assumptions about how the copper behaves after it reaches the electrode, but you definitely are have a solid understanding of the charged particle model. ',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -3282,7 +3282,7 @@ export const sample_submissions: Submissions = {
         },
         _7632: {
           comments: 'ME\n+ Used spreadsheet statistics and created histograms to analyze data.\n+ Analyzed the data to support the claim that mutations are random and not controlled by the environment.\n+ Independently analyzed a complex data set to make a valid claim about the relationship mutations and the environment, but the evidence given in your analysis does not totally support the claim.\n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -3364,7 +3364,7 @@ export const sample_submissions: Submissions = {
         },
         _4902: {
           comments: 'ME+\n+ Made a reasonable, valid claim that mutations spread faster in an environment with a selective pressure for that mutation.\n+ Supported the claim with sound quantitative evidence from the data table.\n+ Writing showed sophistication in reasoning and scientific vocabulary.',
-          points: 3.5
+          points: 2.5
         },
         _7632: {
           comments: 'ME.\n+ Analyzed a large dataset on a spreadsheet using statistics (averages and ranges) to support a valid claim.\n\nMAY BE EE, BUT I NEED TO SEE THE GRAPHS YOU MADE.',
@@ -3509,7 +3509,7 @@ export const sample_submissions: Submissions = {
         },
         _7924: {
           comments: 'ME+\n+ Made a clear CLAIM that was supported by your data.\n+ Provided sufficient EVIDENCE from your data to support your claim.\n+ REASONING was clear, logical and coherent. ',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -3658,11 +3658,11 @@ export const sample_submissions: Submissions = {
         },
         _4838: {
           comments: 'ME+\n+ Made a clear claim and supported it with clear reasoning and sufficient evidence from the investigation.\n+ Used a formal lab report to make connections between the question, methods of data collection, data, and analysis.\n+ On future lab reports please pay attention to the formatting guidelines.',
-          points: 3.5
+          points: 2.5
         },
         _5495: {
           comments: 'ME+\n+ Data collected was sufficient to address the question.\n+ Skillfully used the guitar simulation and Google Sheets to collect, record, analyze, and evaluate data.\n+ Accounted for other variables by collecting a larger data set.',
-          points: 3.5
+          points: 2.5
         },
         _7365: {
           comments: 'ME\n+ Interpreted graphs to determine the period, and frequency of sound waves.\n',
@@ -3880,11 +3880,11 @@ export const sample_submissions: Submissions = {
         },
         _366: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n++ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n+ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         },
         _6512: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n++ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n+ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -4741,7 +4741,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         '6883_1846': {
           comments: 'ME+\nPoster and video clearly and accurately explain with no errors errors or misconceptions... \n+ how sound waves are transmitted by oscillating objects\n+ how sound waves travel through oscillations of air molecules\n+ how sound waves are received by causing the oscillation of tiny objects\n+ how properties of sound like amplitude and frequency are related to the oscillation of particles',
-          points: 3.5
+          points: 2.5
         },
         '6883_1937': {
           comments: 'EE\n+ Poster and video show that you did additional research into sound.\n+ Asked good clarification and curiosity questions in the discussion.',
@@ -4749,7 +4749,7 @@ export const sample_submissions: Submissions = {
         },
         '6883_5852': {
           comments: 'ME\n+ Poster uses particle diagrams to accurately model the oscillation of air molecules.\n∆ Oscillations are more regular and less random.  It would be better to show the oscillation with arrows like this <--O-->, rather than ""O""\n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -5569,7 +5569,7 @@ export const sample_submissions: Submissions = {
         },
         _4902: {
           comments: 'ME+\n+ Made a reasonable, valid claim that mutations are random and not controlled by the environment.\n+ Supported the claim with multiple interpretations of the evidence from the data table and graphs.',
-          points: 3.5
+          points: 2.5
         },
         _7632: {
           comments: 'ME.\n+ Used spreadsheet to create histograms to analyze data.\n∆ Did not do the statistics (average, etc) on your own.\n+ Analyzed the data to support the claim that mutations are random and not controlled by the environment.',
@@ -5777,7 +5777,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         _2015: {
           comments: 'ME+\n+ Used histograms to analyze a complex data set.\n+ Did some additional data analysis to determine which side of Manhattan the source came from.',
-          points: 3.5
+          points: 2.5
         },
         _6859: {
           comments: 'ME.\nFuture Work section discussed some ways to refine the investigation.',
@@ -5785,7 +5785,7 @@ export const sample_submissions: Submissions = {
         },
         _7924: {
           comments: 'ME+\n+ Made a clear CLAIM that was supported by your data.\n+ Provided sufficient EVIDENCE from your data to support your claim.\n+ REASONING was clear, logical and coherent. ',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -5995,7 +5995,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         '6883_1846': {
           comments: 'ME+\nPoster and video clearly and accurately explain with no errors errors or misconceptions... \n+ how sound waves are transmitted by oscillating objects\n+ how sound waves travel through oscillations of air molecules\n+ how sound waves are received by causing the oscillation of tiny objects\n+ how properties of sound like amplitude and frequency are related to the oscillation of particles',
-          points: 3.5
+          points: 2.5
         },
         '6883_1937': {
           comments: 'ME\n+ Poster and video show that you did additional research into sound.\n∆ Did not ask any clarification or curiosity questions in the discussion.',
@@ -6167,11 +6167,11 @@ export const sample_submissions: Submissions = {
         },
         _366: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n++ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n+ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         },
         _6512: {
           comments: 'ME+\nSome explanations (++) are clear, coherent, and use technical vocabulary to  show a sophisticated particle-level understanding of how waves are transmitted and received.  The others (+) are accurate but do not exceed expectations...\n+ sound waves\n++ electrical waves\n++ electromagnetic waves\nShowed an accurate understanding of how information is “encoded” by…\n+ frequency in sound waves\n+ binary in electrical and  electromagnetic waves \n',
-          points: 3.5
+          points: 2.5
         }
       },
       score: 0,
@@ -6988,7 +6988,7 @@ export const sample_submissions: Submissions = {
       rubric: {
         _7863: {
           comments: 'ME+\n+ Showed an understanding of the relationship between DNA, genes, and traits.\n+ Showed an understanding  of how random mutations in DNA required for evolution.\n+ Showed an understanding of the process of natural selection through selective pressure acting on individual variation.\n+ Extended your understanding of evolution to explain how real world bacteria evolve resistance to antibiotics.   Explanation  had some minor errors, but still showed overall understanding.',
-          points: 3.5
+          points: 2.5
         },
         _8366: {
           comments: 'ME\nClearly written explanation connected observations in the video a mostly accurate understanding of evolution by natural selection',

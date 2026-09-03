@@ -159,10 +159,16 @@ export class OutcomesGraphComponent implements OnInit, OnDestroy {
           assessment.index = index;
           index = index + 1;
         }
-        if( !(assessment.points in outcome.assessment_groups) ) {
-          outcome.assessment_groups[assessment.points] = []
+        // Old version allowing decimal values of points.
+        // if( !(assessment.points in outcome.assessment_groups) ) {
+        //   outcome.assessment_groups[assessment.points] = []
+        // }
+        // New version forcing points to be whole numbers for grouping.
+        let points = Math.floor(assessment.points);
+        if( !(points in outcome.assessment_groups) ) {
+          outcome.assessment_groups[points] = []
         }
-        outcome.assessment_groups[assessment.points].push(assessment);
+        outcome.assessment_groups[points].push(assessment);
       })
 
       this.outcomes[key] = outcome;
