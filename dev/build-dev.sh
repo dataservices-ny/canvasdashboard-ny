@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-# No need to run this script on its own.  This is used by build-servers.sh to 
+# No need to run this script on its own.  This is used by build-servers.sh to
 # move Angular files into the proper places to be accessed by Flask.
 
 # Run this from /frontend directory
+
+shopt -s nullglob
 
 # Move files from frontend/dist to dev directories accessed by Flask
 if [ -f "./dist/index.html" ]; then
