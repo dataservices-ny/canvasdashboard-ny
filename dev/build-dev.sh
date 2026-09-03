@@ -5,6 +5,8 @@
 
 # Run this from /frontend directory
 
+shopt -s nullglob
+
 # Move files from frontend/dist to dev directories accessed by Flask
 if [ -f "./dist/index.html" ]; then
   mkdir -p ../static/img
